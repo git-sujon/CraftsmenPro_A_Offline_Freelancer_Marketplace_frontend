@@ -1,5 +1,7 @@
- const rootReducer = {
+import sidebarReducer from "./slices/sidebarSlice";
 
-}
+const rootReducer = {
+    sidebar:sidebarReducer,
+};
 
-export default rootReducer
+export default rootReducer;

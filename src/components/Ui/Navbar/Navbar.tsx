@@ -6,6 +6,8 @@ import { MenuOutlined } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { useState } from "react";
+import { useAppDispatch } from "@/redux/hooks";
+import { showSidebarDrawer } from "@/redux/slices/sidebarSlice";
 
 const { Header } = Layout;
 
@@ -19,6 +21,7 @@ const Navbar = ({
   }[];
 }) => {
   const pathName = usePathname();
+  const dispatch = useAppDispatch()
 
   const [open, setOpen] = useState(false);
 
@@ -32,10 +35,18 @@ const Navbar = ({
 
   return (
     <Layout className="layout">
-      <Header className="flex items-center">
-        <Content>
-          <Title className="text-white mb-0">CraftsmanPro</Title>
-        </Content>
+      <Header className="flex items-center justify-between lg:justify-start lg:gap-x-10">
+        <div className="flex items-center gap-x-4 ">
+          <Button type="primary" onClick={()=>dispatch(showSidebarDrawer())} className="lg:hidden ">
+            <MenuOutlined />
+          </Button>
+
+          <Content>
+            <Link href="/" >
+              <Title className="text-white mb-0" level={5}>CraftsmenPro</Title>
+            </Link>
+          </Content>
+        </div>
         <Menu
           className="hidden lg:block "
           // disabledOverflow
@@ -74,9 +85,7 @@ const Navbar = ({
             {items?.map((item) => {
               return (
                 <Menu.Item key={item.key}>
-                  <Link href={item.href} >
-                    {item.label}
-                  </Link>
+                  <Link href={item.href}>{item.label}</Link>
                 </Menu.Item>
               );
             })}
