@@ -23,7 +23,15 @@ const Login: React.FC = () => {
     console.log("data:", data);
 
     try {
-      
+      // const response = await userLogin({ ...data }).unwrap();
+      // if (isLoading) {
+      //   return <LoadingPage />;
+      // }
+      // if (response?.accessToken) {
+      //   router.push("/profile");
+      //   message.success("Welcome Back")
+      // }
+      // storeUserInfo({ accessToken: response?.accessToken });
     } catch (error: any) {
       console.error(error.message);
     }

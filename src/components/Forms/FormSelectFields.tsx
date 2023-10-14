@@ -1,11 +1,9 @@
 "use client";
+import { ISelectOptions } from "@/types/common";
 import { Input, Select } from "antd";
 import { useFormContext, Controller } from "react-hook-form";
 
-export interface ISelectOptions {
-  label: string;
-  value: string;
-}
+
 
 interface ISelectFieldProps {
   name: string;
