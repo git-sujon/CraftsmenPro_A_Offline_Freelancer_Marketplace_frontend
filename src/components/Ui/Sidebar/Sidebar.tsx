@@ -2,6 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { onSidebarDrawerClose } from "@/redux/slices/sidebarSlice";
+
 import {
   LaptopOutlined,
   NotificationOutlined,
@@ -11,7 +12,7 @@ import type { MenuProps } from "antd";
 import { Breadcrumb, Drawer, Layout, Menu, theme } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { useEffect, useState } from "react";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Sidebar = ({
@@ -28,6 +29,8 @@ const Sidebar = ({
   const pathName = usePathname();
   const { open } = useAppSelector((state) => state.sidebar);
   const dispatch = useAppDispatch();
+
+
   return (
     <Layout>
       <Sider width={250} className="min-h-screen bg-green-200 hidden lg:block">

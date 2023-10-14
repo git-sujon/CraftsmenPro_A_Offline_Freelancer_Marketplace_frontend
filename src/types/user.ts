@@ -17,3 +17,10 @@ export interface IUser {
     isVerified?: boolean;
   }
   
+
+  export interface IJwtDecoded {
+    email: string;
+    role: string;
+    iat: number;
+    exp: number;
+}

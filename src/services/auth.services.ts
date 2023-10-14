@@ -1,4 +1,6 @@
-import { authKey } from "@/Constants/storageKeys";
+import { authKey } from "@/constants/storageKeys";
+import { tagTypes } from "@/redux/tagTypes";
+import { IJwtDecoded } from "@/types/user";
 import { decodedToken } from "@/utils/jwt";
 import { getFromLocalStorage, setToLocalStorage } from "@/utils/localStorage";
 
@@ -16,10 +18,56 @@ export const getUserInfo = () => {
   }
 };
 
-export const isLoggedIn = () => {
+
+export const isUserLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey);
-  return !!authToken;
+
+  if (authToken) {
+    const userInfo = decodedToken(authToken) as IJwtDecoded;
+
+    if (userInfo?.role === tagTypes.user) {
+      return true;
+    }
+  }
 };
+
+export const isServiceProviderLoggedIn = () => {
+  const authToken = getFromLocalStorage(authKey);
+
+  if (authToken) {
+    const userInfo = decodedToken(authToken) as IJwtDecoded;
+
+    if (userInfo?.role === tagTypes.serviceProvider) {
+      return true;
+    }
+  }
+};
+
+export const isAdminLoggedIn = () => {
+  const authToken = getFromLocalStorage(authKey);
+
+  if (authToken) {
+    const userInfo = decodedToken(authToken) as IJwtDecoded;
+
+    if (userInfo?.role === tagTypes.admin) {
+      return true;
+    }
+  }
+};
+
+
+export const isSuperAdminLoggedIn = () => {
+  const authToken = getFromLocalStorage(authKey);
+
+  if (authToken) {
+    const userInfo = decodedToken(authToken) as IJwtDecoded; // Type assertion
+
+    if (userInfo?.role === "superAdmin") {
+      return true;
+    }
+  }
+};
+
 
 export const removeUserInfo = (key: string) => {
   return localStorage.removeItem(key);

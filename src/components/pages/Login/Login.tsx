@@ -7,8 +7,11 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 
+import loginImage from "../../../assets/images/login.png";
 import { useRouter } from "next/navigation";
 import LoadingPage from "@/app/loading";
+import { useUserLoginMutation } from "@/redux/api/authApi";
+import { storeUserInfo } from "@/services/auth.services";
 
 type FromValues = {
   id: string;
@@ -17,44 +20,47 @@ type FromValues = {
 
 const Login: React.FC = () => {
   const router = useRouter();
-
+  const [userLogin, { isLoading}] = useUserLoginMutation();
 
   const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
-    console.log("data:", data);
 
     try {
-      // const response = await userLogin({ ...data }).unwrap();
-      // if (isLoading) {
-      //   return <LoadingPage />;
-      // }
-      // if (response?.accessToken) {
-      //   router.push("/profile");
-      //   message.success("Welcome Back")
-      // }
-      // storeUserInfo({ accessToken: response?.accessToken });
+      const response = await userLogin({ ...data }).unwrap();
+
+      
+
+      if (isLoading) {
+        return <LoadingPage />;
+      }
+      if (response?.accessToken) {
+        router.push("/");
+        message.success("Welcome Back");
+      }
+      storeUserInfo({ accessToken: response?.accessToken });
     } catch (error: any) {
       console.error(error.message);
     }
   };
 
   return (
-    <Row
-      justify="center"
-      align={"middle"}
-      style={{
-        minHeight: "100vh",
-      }}
-    >
-      <Col sm={12} md={16} lg={10}></Col>
-      <Col sm={12} md={8} lg={8}>
+    <Row className="min-h-screen justify-center items-center max-width">
+      <Col sm={12} md={12} lg={10}>
+        <Image src={loginImage} width={500} height={500} alt="login page image" />
+      </Col>
+      <Col sm={12} md={12} lg={10}>
         <div
           style={{
             margin: "15px 0",
           }}
         >
+           <h1 className="text-4xl font-bold text-textPrimary mb-6">Login</h1>
+           <div className="text-textSecondary">
+            {"Doesn't have an account?"}
+            <Button type="dashed" className="ml-2 "  href="/auth/signup">Sign up</Button>
+           </div>
           <Form submitHandler={onsubmit}>
             <div>
-              <FormInput name="id" type="text" size="large" label="Email" />
+              <FormInput name="email" type="text" size="large" label="Email" />
             </div>
             <div
               style={{

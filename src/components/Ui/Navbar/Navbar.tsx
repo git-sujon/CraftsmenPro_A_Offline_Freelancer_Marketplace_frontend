@@ -1,7 +1,7 @@
 "use client";
 import { Button, Drawer, Layout, Menu } from "antd";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MenuOutlined, UserAddOutlined } from "@ant-design/icons";
 import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { showSidebarDrawer } from "@/redux/slices/sidebarSlice";
 import Image from "next/image";
+import { authKey } from "@/constants/storageKeys";
+import { removeUserInfo } from "@/services/auth.services";
+import { useGetMyProfileQuery } from "@/redux/api/userApi";
 
 const { Header } = Layout;
 
@@ -22,6 +25,10 @@ const Navbar = ({
   }[];
 }) => {
   const pathName = usePathname();
+  // const {data} = useGetMyProfileQuery(undefined)
+
+  // console.log("data:", data)
+
   const dispatch = useAppDispatch();
 
   const [open, setOpen] = useState(false);
@@ -45,6 +52,13 @@ const Navbar = ({
     window.addEventListener("resize", updateWidth);
     updateWidth();
   }, []);
+
+  const router = useRouter();
+  const logoutHandler = () => {
+    removeUserInfo(authKey);
+    router.push("/auth/login");
+  };
+
   return (
     <Layout className="layout bg-white">
       <Header className="flex items-center justify-between lg:justify-start lg:gap-x-10 bg-white">
@@ -88,17 +102,21 @@ const Navbar = ({
           </Menu>
           <div className="lg:flex items-center gap-x-10 hidden ">
             <Button
-            href="/auth/service-provider-registration"
+              href="/auth/service-provider-registration"
               className=""
               type="dashed"
             >
-            <UserAddOutlined />  Become a Services Provider
+              <UserAddOutlined /> Become a Services Provider
             </Button>
             <Button
+              href="/auth/login"
               className=" hover:bg-secondary "
               type="primary"
             >
               Login
+            </Button>
+            <Button onClick={logoutHandler} type="text" danger>
+              Logout
             </Button>
           </div>
         </div>
@@ -138,13 +156,15 @@ const Navbar = ({
             </Menu>
             <div className="flex-col lg:hidden mt-3">
               <Button
-                className="bg-accent text-black font-bold hover:bg-warning block"
-                type="primary"
+                href="/auth/service-provider-registration"
+                className=""
+                type="dashed"
               >
-                Become a Services Provider
+                <UserAddOutlined /> Become a Services Provider
               </Button>
               <Button
-                className="bg-primary hover:bg-secondary font-bold block mt-3"
+                href="/auth/login"
+                className=" hover:bg-secondary block mt-3"
                 type="primary"
               >
                 Login

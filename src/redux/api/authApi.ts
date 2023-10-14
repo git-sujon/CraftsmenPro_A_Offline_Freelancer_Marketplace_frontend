@@ -1,31 +1,27 @@
-import { tagTypes } from '../tagTypes'
-import { baseApi } from './baseApi'
+import { tagTypes } from "../tagTypes";
+import { baseApi } from "./baseApi";
 
-
-const urlExtension= "/auth"
+const urlExtension = "/auth";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     userLogin: build.mutation({
-      query: (loginData) => ({
+      query: (data) => ({
         url: `${urlExtension}/login`,
         method: "POST",
-        data:loginData
-
+        data: data,
       }),
-      invalidatesTags:[tagTypes.user]
+      invalidatesTags: [tagTypes.user],
     }),
     userSignUp: build.mutation({
-      query: (signupData) => ({
+      query: (data) => ({
         url: `${urlExtension}/signup`,
         method: "POST",
-        data:signupData
-
+        data: data,
       }),
-      invalidatesTags:[tagTypes.user]
+      invalidatesTags: [tagTypes.user],
     }),
-
   }),
-})
+});
 
-export const { useUserLoginMutation , useUserSignUpMutation} = authApi
+export const { useUserLoginMutation, useUserSignUpMutation } = authApi;

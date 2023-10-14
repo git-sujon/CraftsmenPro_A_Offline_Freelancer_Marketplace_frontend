@@ -12,7 +12,13 @@ import LoadingPage from "@/app/loading";
 
 import signUpImage from "../../../assets/images/signup.png";
 import FormSelectFields from "@/components/Forms/FormSelectFields";
-import { cityOptions, divisionOptions, genderOptions } from "@/constants/common";
+import {
+  cityOptions,
+  divisionOptions,
+  genderOptions,
+} from "@/constants/common";
+import { storeUserInfo } from "@/services/auth.services";
+import { useUserSignUpMutation } from "@/redux/api/authApi";
 
 type FromValues = {
   id: string;
@@ -22,17 +28,21 @@ type FromValues = {
 const SignUp: React.FC = () => {
   const router = useRouter();
 
-  const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
-    console.log("data:", data);
+  const [userSignUp, { isLoading }] = useUserSignUpMutation();
 
+  const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
+   
     try {
-      const response = await userLogin({ ...data }).unwrap();
+      const response = await userSignUp({ ...data }).unwrap();
+
+      console.log("response:", response);
+
       if (isLoading) {
         return <LoadingPage />;
       }
       if (response?.accessToken) {
-        router.push("/profile");
-        message.success("Welcome Back")
+        router.push("/");
+        message.success("User created successfully");
       }
       storeUserInfo({ accessToken: response?.accessToken });
     } catch (error: any) {
@@ -43,7 +53,7 @@ const SignUp: React.FC = () => {
   return (
     <Row className="min-h-screen justify-center items-center max-width">
       <Col sm={12} md={12} lg={10}>
-       <h1 className="text-4xl font-bold text-textPrimary mb-6">Sign Up</h1>
+        <h1 className="text-4xl font-bold text-textPrimary mb-6">Sign Up</h1>
         <Form submitHandler={onsubmit}>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>
@@ -119,7 +129,7 @@ const SignUp: React.FC = () => {
         </Form>
       </Col>
       <Col sm={12} md={12} lg={10}>
-        <Image src={signUpImage} width={500} height={500} alt="signup image" />
+        <Image src={signUpImage} width={500} height={500} alt="signup page image" />
       </Col>
     </Row>
   );

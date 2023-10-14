@@ -2,14 +2,14 @@
 
 import Sidebar from "@/components/Ui/Sidebar/Sidebar";
 import LoadingPage from "@/app/loading";
-import { isAdminLoggedIn } from "@/services/auth.services";
+import { isUserLoggedIn } from "@/services/auth.services";
 
 import {  useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
-const AdminSidebar = ({ children }: { children: React.ReactNode }) => {
-  const IsLoggedIn = isAdminLoggedIn()
+const UserSidebar = ({ children }: { children: React.ReactNode }) => {
+  const IsLoggedIn = isUserLoggedIn()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   
@@ -25,12 +25,12 @@ const AdminSidebar = ({ children }: { children: React.ReactNode }) => {
   }
 
   const items = [
-    { key: "1", label: "Profile", href: "/admin/profile" },
-    { key: "2", label: "Create", href: "/admin/create-admin" },
+    { key: "1", label: "Profile", href: "/user/profile" },
+    { key: "2", label: "Create", href: "/user/my-booking" },
 
   ];
 
   return <Sidebar items={items}>{children}</Sidebar>;
 };
 
-export default AdminSidebar;
+export default UserSidebar;
