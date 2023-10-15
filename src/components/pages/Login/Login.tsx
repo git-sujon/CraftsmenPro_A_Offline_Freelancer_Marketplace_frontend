@@ -20,23 +20,20 @@ type FromValues = {
 
 const Login: React.FC = () => {
   const router = useRouter();
-  const [userLogin, { isLoading}] = useUserLoginMutation();
+  const [userLogin, { isLoading }] = useUserLoginMutation();
 
   const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
-
     try {
       const response = await userLogin({ ...data }).unwrap();
-
-      
 
       if (isLoading) {
         return <LoadingPage />;
       }
       if (response?.accessToken) {
+        storeUserInfo({ accessToken: response?.accessToken });
         router.push("/");
         message.success("Welcome Back");
       }
-      storeUserInfo({ accessToken: response?.accessToken });
     } catch (error: any) {
       console.error(error.message);
     }
@@ -45,7 +42,12 @@ const Login: React.FC = () => {
   return (
     <Row className="min-h-screen justify-center items-center max-width">
       <Col sm={12} md={12} lg={10}>
-        <Image src={loginImage} width={500} height={500} alt="login page image" />
+        <Image
+          src={loginImage}
+          width={500}
+          height={500}
+          alt="login page image"
+        />
       </Col>
       <Col sm={12} md={12} lg={10}>
         <div
@@ -53,11 +55,13 @@ const Login: React.FC = () => {
             margin: "15px 0",
           }}
         >
-           <h1 className="text-4xl font-bold text-textPrimary mb-6">Login</h1>
-           <div className="text-textSecondary">
+          <h1 className="text-4xl font-bold text-textPrimary mb-6">Login</h1>
+          <div className="text-textSecondary">
             {"Doesn't have an account?"}
-            <Button type="dashed" className="ml-2 "  href="/auth/signup">Sign up</Button>
-           </div>
+            <Button type="dashed" className="ml-2 " href="/auth/signup">
+              Sign up
+            </Button>
+          </div>
           <Form submitHandler={onsubmit}>
             <div>
               <FormInput name="email" type="text" size="large" label="Email" />

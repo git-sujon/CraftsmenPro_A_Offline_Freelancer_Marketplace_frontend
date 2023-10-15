@@ -1,11 +1,13 @@
-import React from 'react';
+import ServiceProviderRegistration from "@/components/pages/ServicesProviderRegistration/ServicesProviderRegistration";
+import { Metadata } from "next";
 
-const ServiceProviderRegistration = () => {
-    return (
-        <div>
-            service-provider-registration
-        </div>
-    );
+export const metadata: Metadata = {
+  title: 'CraftsmenPro | Service Provider Registration',
+  description: 'Be a Service Provider.',
+}
+
+const ServiceProviderRegistrationPage = () => {
+    return <ServiceProviderRegistration /> 
 };
 
-export default ServiceProviderRegistration;
+export default ServiceProviderRegistrationPage;

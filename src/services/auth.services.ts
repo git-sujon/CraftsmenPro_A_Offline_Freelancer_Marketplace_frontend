@@ -18,7 +18,6 @@ export const getUserInfo = () => {
   }
 };
 
-
 export const isUserLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey);
 
@@ -49,12 +48,11 @@ export const isAdminLoggedIn = () => {
   if (authToken) {
     const userInfo = decodedToken(authToken) as IJwtDecoded;
 
-    if (userInfo?.role === tagTypes.admin) {
+    if (userInfo?.role === tagTypes.user) {
       return true;
     }
   }
 };
-
 
 export const isSuperAdminLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey);
@@ -68,7 +66,26 @@ export const isSuperAdminLoggedIn = () => {
   }
 };
 
-
 export const removeUserInfo = (key: string) => {
   return localStorage.removeItem(key);
 };
+
+// export const checkCorrectUser =(userProfileData: any) => {
+//   const authToken = getFromLocalStorage(authKey); // Get the token from local storage
+
+//   if (authToken && userProfileData) {
+
+//     console.log("userProfileData:", userProfileData)
+
+//     const userInfo = decodedToken(authToken) as IJwtDecoded;
+
+//     if (
+//       userInfo?.role === userProfileData?.role &&
+//       userInfo?.email === userProfileData?.email
+//     ) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   }
+// };

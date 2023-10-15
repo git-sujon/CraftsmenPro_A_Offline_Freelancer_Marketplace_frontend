@@ -33,7 +33,7 @@ const Sidebar = ({
 
   return (
     <Layout>
-      <Sider width={250} className="min-h-screen bg-green-200 hidden lg:block">
+      <Sider width={250} className="min-h-screen bg-green-100 hidden lg:block">
         <Menu
           className="bg-transparent px-3 py-1"
           disabledOverflow

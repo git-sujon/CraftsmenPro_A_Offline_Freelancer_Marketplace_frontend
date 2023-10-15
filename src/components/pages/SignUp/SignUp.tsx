@@ -35,18 +35,20 @@ const SignUp: React.FC = () => {
     try {
       const response = await userSignUp({ ...data }).unwrap();
 
-      console.log("response:", response);
+      
 
       if (isLoading) {
         return <LoadingPage />;
       }
       if (response?.accessToken) {
+        storeUserInfo({ accessToken: response?.accessToken });
         router.push("/");
         message.success("User created successfully");
       }
-      storeUserInfo({ accessToken: response?.accessToken });
+
+
     } catch (error: any) {
-      console.error(error.message);
+      console.error(error);
     }
   };
 
@@ -124,7 +126,7 @@ const SignUp: React.FC = () => {
             </Col>
           </Row>
           <Button type="primary" htmlType="submit" className="mt-5">
-            Login
+            Sign Up
           </Button>
         </Form>
       </Col>
