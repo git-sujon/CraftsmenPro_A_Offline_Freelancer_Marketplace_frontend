@@ -22,6 +22,8 @@ import {
 import FormTextareaInput from "@/components/Forms/FormTextareaInput";
 import { IJwtDecoded } from "@/types/user";
 import { useGetMyProfileQuery } from "@/redux/api/userApi";
+import { useAddServicesProviderMutation } from "@/redux/api/servicesProviderapi";
+import { tagTypes } from "@/redux/tagTypes";
 
 type FromValues = {
   id: string;
@@ -34,7 +36,10 @@ const ServiceProviderRegistration: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { data: userProfileData, isLoading: userProfileDataLoading } =
     useGetMyProfileQuery(undefined);
+    const [addServicesProvider] = useAddServicesProviderMutation()
   const user: IJwtDecoded = getUserInfo() as IJwtDecoded;
+
+
 
   useEffect(() => {
     if (userProfileDataLoading) {
@@ -60,6 +65,10 @@ const ServiceProviderRegistration: React.FC = () => {
     return <LoadingPage />;
   }
 
+  if ( userProfileData && userProfileData?.role === tagTypes?.serviceProvider){
+   message.error("You already a Services Provider")
+  }
+
   const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
     try {
       const userData = {
@@ -69,16 +78,13 @@ const ServiceProviderRegistration: React.FC = () => {
 
       console.log("userData:", userData)
 
-      //   const response = await userSignUp({ ...data }).unwrap();
-      //   console.log("response:", response);
-      //   if (isLoading) {
-      //     return <LoadingPage />;
-      //   }
-      //   if (response?.accessToken) {
-      //     router.push("/");
-      //     message.success("User created successfully");
-      //   }
-      //   storeUserInfo({ accessToken: response?.accessToken });
+
+    
+        const response = await addServicesProvider({ ...userData }).unwrap();
+        console.log("response:", response);
+        // message.success("Now you are a services provider");
+        // message.success("Please Login Again");
+    
     } catch (error: any) {
       console.error(error.message);
     }
