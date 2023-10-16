@@ -64,7 +64,7 @@ const Login: React.FC = () => {
           </div>
           <Form submitHandler={onsubmit}>
             <div>
-              <FormInput name="email" type="text" size="large" label="Email" />
+              <FormInput name="email" type="email" size="large" label="Email" />
             </div>
             <div
               style={{

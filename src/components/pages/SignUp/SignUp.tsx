@@ -77,7 +77,7 @@ const SignUp: React.FC = () => {
             </Col>
 
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <FormInput name="email" type="text" size="large" label="Email" />
+              <FormInput name="email" type="email" size="large" label="Email" />
             </Col>
 
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>

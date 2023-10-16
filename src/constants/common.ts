@@ -304,3 +304,45 @@ export const divisionOptions: ISelectOptions[] = [
   }));
   
 
+
+export const employeeRoleOptions: ISelectOptions[] = [
+  {
+    label: 'Self',
+    value: 'Self',
+  },
+  {
+    label: 'CEO',
+    value: 'ceo',
+  },
+  {
+    label: 'Manager',
+    value: 'manager',
+  },
+  {
+    label: 'Supervisor',
+    value: 'supervisor',
+  },
+  {
+    label: 'Team Lead',
+    value: 'team-lead',
+  },
+  {
+    label: 'Sales Representative',
+    value: 'sales-representative',
+  },
+  {
+    label: 'Human Resources',
+    value: 'hr',
+  },
+  {
+    label: 'Accountant',
+    value: 'accountant',
+  },
+  {
+    label: 'Customer Support',
+    value: 'customer-support',
+  },
+].map((role) => ({
+  label: role.label,
+  value: role.value,
+}));

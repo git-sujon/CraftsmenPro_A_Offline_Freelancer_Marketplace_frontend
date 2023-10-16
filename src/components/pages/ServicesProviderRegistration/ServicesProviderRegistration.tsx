@@ -22,8 +22,9 @@ import {
 import FormTextareaInput from "@/components/Forms/FormTextareaInput";
 import { IJwtDecoded } from "@/types/user";
 import { useGetMyProfileQuery } from "@/redux/api/userApi";
-import { useAddServicesProviderMutation } from "@/redux/api/servicesProviderapi";
+
 import { tagTypes } from "@/redux/tagTypes";
+import { useAddServicesProviderMutation } from "@/redux/api/servicesProviderApi";
 
 type FromValues = {
   id: string;
