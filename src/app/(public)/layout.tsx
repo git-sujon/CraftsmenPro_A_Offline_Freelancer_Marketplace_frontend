@@ -5,6 +5,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <PublicHeader />
       {children}
+      
     </>
   );
 };

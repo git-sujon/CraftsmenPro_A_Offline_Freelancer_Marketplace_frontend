@@ -3,15 +3,12 @@ import { Button, Drawer, Layout, Menu } from "antd";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuOutlined, UserAddOutlined } from "@ant-design/icons";
-import { Content } from "antd/es/layout/layout";
-import Title from "antd/es/typography/Title";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { showSidebarDrawer } from "@/redux/slices/sidebarSlice";
-import Image from "next/image";
 import { authKey } from "@/constants/storageKeys";
 import { removeUserInfo } from "@/services/auth.services";
-import { useGetMyProfileQuery } from "@/redux/api/userApi";
+
 
 const { Header } = Layout;
 

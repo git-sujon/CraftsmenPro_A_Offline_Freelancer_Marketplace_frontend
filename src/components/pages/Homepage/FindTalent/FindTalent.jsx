@@ -2,7 +2,7 @@ import Image from "next/image";
 import findTalentImage from "../../../../assets/images/cleaning service-bro.png";
 
 import { PiLightbulbFilamentFill } from "react-icons/pi";
-import { GrUserWorker } from "react-icons/gr";
+import { TbNetwork } from "react-icons/tb";
 import { HiOutlineUserGroup } from "react-icons/hi";
 
 const FindTalent = () => {
@@ -34,7 +34,7 @@ const FindTalent = () => {
 
             <div className="space-y-2">
               <h3 className="text-textPrimary font-semibold">
-                Payment after work
+              Endless Possibilities
               </h3>
               <p className="text-textSecondary">
                 Unleash creativity and expertise from local freelancers.
@@ -45,7 +45,7 @@ const FindTalent = () => {
           <div className="flex gap-x-5">
             {/* icon  */}
             <div className="h-24">
-              <GrUserWorker className="w-12 h-12 text-textSecondary" />
+              <TbNetwork className="w-12 h-12 text-textSecondary" />
             </div>
 
             {/* description  */}
