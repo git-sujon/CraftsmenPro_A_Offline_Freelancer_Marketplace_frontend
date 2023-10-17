@@ -4,6 +4,7 @@ import BrowseByCatagories from "@/components/pages/Homepage/BrowseByCatagories/B
 import PopularServices from "@/components/pages/Homepage/PopularServices/PopularServices";
 import FindTalent from "@/components/pages/Homepage/FindTalent/FindTalent";
 import JoinUs from "@/components/pages/Homepage/JoinUs/JoinUs";
+import FAQ from "@/components/pages/Homepage/FAQ/FAQ";
 
 
 const HomePage = () => {
@@ -15,7 +16,7 @@ const HomePage = () => {
       <BrowseByCatagories />
       <FindTalent />
       <JoinUs />
-
+    <FAQ />
      
     </>
   );

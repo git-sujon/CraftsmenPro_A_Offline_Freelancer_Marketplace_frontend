@@ -15,3 +15,16 @@
 .max-width {
   @apply max-w-[1480px] mx-auto 2xl:px-0 xl:px-14 lg:px-10 md:px-8 px-3;
 }
+
+
+.ant-collapse-item {
+  border-bottom: 1px solid #007456 !important;  
+}
+
+.ant-collapse-header {
+  padding: 26px 16px !important;
+}
+
+.ant-collapse-expand-icon{
+  color: #007456;
+}
