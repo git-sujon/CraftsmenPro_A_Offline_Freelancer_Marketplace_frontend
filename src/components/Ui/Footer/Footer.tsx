@@ -20,9 +20,9 @@ const Footer = () => {
                   className="w-full h-full max-h-[150px] max-w-[300px]"
                 ></Image>
                 <p className="mt-[-20px] text-white text-sm">
-                  CraftsmenPro connects you with skilled professionals for a
+                 <span className="bg-green-700 px-1 rounded-full">CraftsmenPro</span> connects you with skilled professionals for a
                   wide range of face-to-face services. From home repairs to
-                  maintenance tasks, we make your life easier. Book now!
+                  maintenance tasks, we make your life easier.
                 </p>
                 <div className="flex-row my-4"></div>
               </div>
