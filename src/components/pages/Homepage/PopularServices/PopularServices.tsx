@@ -1,4 +1,4 @@
-import SectionSubTitle from "@/components/Ui/Typography/SectionSubTitle";
+import SectionSubPera from "@/components/Ui/Typography/SectionSubPera";
 import SectionTitle from "@/components/Ui/Typography/SectionTitle";
 
 const PopularServices = () => {
@@ -7,7 +7,13 @@ const PopularServices = () => {
             {/* section header  */}
             <div>
                 <SectionTitle text="Popular Services" textAlign="text-center"/>
-                <SectionSubTitle text="Most viewed and all-time top-selling services" textAlign="text-center" />
+                <SectionSubPera text="Most viewed and all-time top-selling services" textAlign="text-center" />
+            </div>
+
+                {/* popular services  */}
+
+            <div className="h-96">
+
             </div>
         </div>
     );

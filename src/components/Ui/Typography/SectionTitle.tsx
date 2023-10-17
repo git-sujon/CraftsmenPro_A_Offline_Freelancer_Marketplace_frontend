@@ -5,10 +5,10 @@ const SectionTitle = ({
   textAlign,
 }: {
   text: string;
-  textAlign: string;
+  textAlign?: string;
 }) => {
   console.log("textAlign:", textAlign);
-  return <h2 className={`text-textPrimary text-3xl  ${textAlign}`}>{text}</h2>;
+  return <h2 className={`text-textPrimary text-xl md:text-3xl   ${textAlign ? textAlign : "" }`}>{text}</h2>;
 };
 
 export default SectionTitle;
