@@ -3,7 +3,7 @@ import SearchBar from "@/components/Ui/SearchAndFilter/SearchBar";
 
 const BlogPage = () => {
   return (
-    <div className="max-width mt-10">
+    <div className=" mt-5">
       <TopBreadCrump
         items={[
           {
@@ -12,12 +12,10 @@ const BlogPage = () => {
           },
         ]}
       />
-{/* Search  */}
-        <div>
-<SearchBar />
-        </div>
-
-
+      {/* Search  */}
+      <div className="bg-slate-100  py-20">
+        <SearchBar />
+      </div>
     </div>
   );
 };
