@@ -1,6 +1,6 @@
 import Image from "next/image";
 import footerLogo from "../../../assets/images/CraftsmenPro-logos_white.png";
-import { Button, Input } from "antd";
+import { Button, Divider, Input } from "antd";
 import Link from "next/link";
 import { CopyrightCircleFilled } from "@ant-design/icons";
 
@@ -101,7 +101,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <hr className="my-1 border-secondary" />
+          <Divider className="my-1 border-secondary"/>
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center text-white">
               <div className="text-sm  pt-2">

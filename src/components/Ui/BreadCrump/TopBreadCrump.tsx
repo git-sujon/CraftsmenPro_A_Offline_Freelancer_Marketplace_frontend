@@ -13,15 +13,15 @@ const TopBreadCrump = ({
   const breadcrumbItems = [
     {
       title: (
-        <Link href={"/"}>
-          <HomeOutlined />
+        <Link href={"/"} className="text-textSecondary font-bold">
+          <HomeOutlined  /> Home
         </Link>
       ),
     },
     ...items?.map((item) => {
       return {
         title: item.link ? (
-          <Link href={item.link}> {item.label} </Link>
+          <Link href={item.link} className="text-textSecondary font-semibold " > {item.label} </Link>
         ) : (
           <span>{item.label}</span>
         ),
