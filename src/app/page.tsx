@@ -5,7 +5,7 @@ import PopularServices from "@/components/pages/Homepage/PopularServices/Popular
 import FindTalent from "@/components/pages/Homepage/FindTalent/FindTalent";
 import JoinUs from "@/components/pages/Homepage/JoinUs/JoinUs";
 import FAQ from "@/components/pages/Homepage/FAQ/FAQ";
-
+import LatestBlogs from "@/components/pages/Homepage/LatestBlogs/LatestBlogs";
 
 const HomePage = () => {
   return (
@@ -16,8 +16,8 @@ const HomePage = () => {
       <BrowseByCatagories />
       <FindTalent />
       <JoinUs />
-    <FAQ />
-     
+      <FAQ />
+      <LatestBlogs />
     </>
   );
 };
