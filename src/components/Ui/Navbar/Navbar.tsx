@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { showSidebarDrawer } from "@/redux/slices/sidebarSlice";
 import { authKey } from "@/constants/storageKeys";
-import { removeUserInfo } from "@/services/auth.services";
-
+import { loggedIn, removeUserInfo } from "@/services/auth.services";
+import { useGetMyProfileQuery } from "@/redux/api/userApi";
+import Image from "next/image";
 
 const { Header } = Layout;
 
@@ -22,9 +23,15 @@ const Navbar = ({
   }[];
 }) => {
   const pathName = usePathname();
-  // const {data} = useGetMyProfileQuery(undefined)
+  const router = useRouter();
 
-  // console.log("data:", data)
+  const [isUserLogged, setIsUserLogged] = useState(false);
+
+  useEffect(() => {
+    if (loggedIn()) {
+      setIsUserLogged(true);
+    }
+  }, []);
 
   const dispatch = useAppDispatch();
 
@@ -38,28 +45,16 @@ const Navbar = ({
     setOpen(false);
   };
 
-  const [width, setWidth] = useState(0);
 
-  const updateWidth = () => {
-    const newWidth = window.innerWidth;
-    setWidth(newWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateWidth);
-    updateWidth();
-  }, []);
-
-  const router = useRouter();
   const logoutHandler = () => {
     removeUserInfo(authKey);
     router.push("/auth/login");
   };
 
   return (
-    <Layout className="layout bg-white">
-      <Header className="flex items-center justify-between lg:justify-start lg:gap-x-10 bg-white">
-        <div className="flex items-center gap-x-20 ">
+    <Layout className="layout ">
+      <Header className="flex items-center justify-between lg:justify-start lg:gap-x-10 bg-[#fff8f6]">
+        <div className="flex items-center justify-between ">
           <Button
             type="primary"
             onClick={() => dispatch(showSidebarDrawer())}
@@ -68,11 +63,13 @@ const Navbar = ({
             <MenuOutlined />
           </Button>
 
-          <Link href="/" className="block">
-            <img
+          <Link href="/" className="w-48 h-16 ">
+            <Image
               src="/CraftsmenPro-logos_black.png"
               alt="logo"
-              className="h-[60px] w-[80px] mt-5"
+              width={180}
+              height={60}
+              className="bg-center bg-no-repeat bg-cover "
             />
           </Link>
         </div>
@@ -86,10 +83,10 @@ const Navbar = ({
           >
             {items?.map((item) => {
               return (
-                <Menu.Item key={item.key}>
+                <Menu.Item key={item.key} className="bg-[#fff8f6]">
                   <Link
                     href={item.href}
-                    className="text-textSecondary font-bold"
+                    className="text-textSecondary font-bold "
                   >
                     {item.label}
                   </Link>
@@ -105,16 +102,20 @@ const Navbar = ({
             >
               <UserAddOutlined /> Become a Services Provider
             </Button>
-            <Button
-              href="/auth/login"
-              className=" hover:bg-secondary "
-              type="primary"
-            >
-              Login
-            </Button>
-            <Button onClick={logoutHandler} type="text" danger>
-              Logout
-            </Button>
+
+            {isUserLogged ? (
+              <Button onClick={logoutHandler} type="text" danger>
+                Logout
+              </Button>
+            ) : (
+              <Button
+                href="/auth/login"
+                className=" hover:bg-secondary "
+                type="primary"
+              >
+                Login
+              </Button>
+            )}
           </div>
         </div>
 
@@ -159,13 +160,24 @@ const Navbar = ({
               >
                 <UserAddOutlined /> Become a Services Provider
               </Button>
-              <Button
-                href="/auth/login"
-                className=" hover:bg-secondary block mt-3"
-                type="primary"
-              >
-                Login
-              </Button>
+              {isUserLogged ? (
+                <Button
+                  onClick={logoutHandler}
+                  type="text"
+                  className="  block mt-3"
+                  danger
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  href="/auth/login"
+                  className=" hover:bg-secondary block mt-3"
+                  type="primary"
+                >
+                  Login
+                </Button>
+              )}
             </div>
           </div>
         </Drawer>

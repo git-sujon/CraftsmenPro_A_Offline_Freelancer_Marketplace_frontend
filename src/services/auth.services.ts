@@ -18,6 +18,23 @@ export const getUserInfo = () => {
   }
 };
 
+export const loggedIn = () => {
+  const authToken = getFromLocalStorage(authKey);
+
+  if (authToken) {
+    const userInfo = decodedToken(authToken) as IJwtDecoded;
+
+    if (
+      userInfo?.role === tagTypes.user ||
+      userInfo?.role === tagTypes.serviceProvider ||
+      userInfo?.role === tagTypes.admin ||
+      userInfo?.role === tagTypes.superAdmin
+    ) {
+      return true;
+    }
+  }
+};
+
 export const isUserLoggedIn = () => {
   const authToken = getFromLocalStorage(authKey);
 

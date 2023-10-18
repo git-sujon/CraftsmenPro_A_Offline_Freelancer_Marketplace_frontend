@@ -1,5 +1,3 @@
-"use client";
-
 import { Collapse } from "antd";
 import SectionSubPera from "@/components/Ui/Typography/SectionSubPera";
 import SectionTitle from "@/components/Ui/Typography/SectionTitle";

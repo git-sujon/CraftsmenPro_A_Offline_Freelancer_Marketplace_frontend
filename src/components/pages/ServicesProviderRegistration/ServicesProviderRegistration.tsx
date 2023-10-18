@@ -40,7 +40,9 @@ const ServiceProviderRegistration: React.FC = () => {
     const [addServicesProvider] = useAddServicesProviderMutation()
   const user: IJwtDecoded = getUserInfo() as IJwtDecoded;
 
-
+  if ( userProfileData && userProfileData?.role === tagTypes?.serviceProvider){
+    message.error("You already a Services Provider")
+   }
 
   useEffect(() => {
     if (userProfileDataLoading) {
@@ -66,9 +68,7 @@ const ServiceProviderRegistration: React.FC = () => {
     return <LoadingPage />;
   }
 
-  if ( userProfileData && userProfileData?.role === tagTypes?.serviceProvider){
-   message.error("You already a Services Provider")
-  }
+ 
 
   const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
     try {

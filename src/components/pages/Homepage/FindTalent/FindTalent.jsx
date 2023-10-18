@@ -19,7 +19,7 @@ const FindTalent = () => {
             alt={"Find best talent"}
           />
         </div>
-        <div className="space-y-5 w-96">
+        <div className="space-y-5 md:w-96">
           <h1 className="text-primary text-xl md:text-3xl  ">
             A whole world of freelance talent at your fingertips
           </h1>
