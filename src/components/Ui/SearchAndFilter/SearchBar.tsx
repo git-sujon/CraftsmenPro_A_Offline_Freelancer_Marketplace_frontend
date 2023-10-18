@@ -32,6 +32,7 @@ const SearchBar = () => {
       <div className="max-w-3xl mx-auto border-2 border-slate-700 rounded-full bg-white px-8">
         <Form
          className="flex  items-center py-3"
+         //@ts-ignore
             onSubmitCapture={(e)=> setSearchTerm(e.target.search.value)}
          >
             
