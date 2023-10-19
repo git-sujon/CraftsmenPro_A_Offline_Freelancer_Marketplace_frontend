@@ -64,9 +64,9 @@ const Navbar = ({
   // ];
 
   const userProfileItems = [
-    { key: "0", label: "My Profile", href: "/user/my-profile" },
+    { key: "1", label: "My Profile", href: "/user/my-profile" },
     {
-      key: "1",
+      key: "2",
       label: (
         <Button onClick={logoutHandler} type="text" danger>
           Logout
