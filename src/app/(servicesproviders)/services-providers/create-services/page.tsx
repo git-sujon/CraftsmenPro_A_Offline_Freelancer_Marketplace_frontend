@@ -28,7 +28,7 @@ import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormTimePicker from "@/components/Forms/FormTimePicker";
 import FormMultiSelectField from "@/components/Forms/FormMultiSelectField";
 import FormSelectMultipleDateTime from "@/components/Forms/FormSelectMultipleDateTime";
-import { useAddServiceMutation } from "@/redux/api/services";
+import { useAddServiceMutation } from "@/redux/api/servicesApi";
 
 type FromValues = {
   id: string;
@@ -100,6 +100,22 @@ const CreateServices: React.FC = () => {
                 rows={8}
               />
             </Col>
+            <Col xs={12} sm={12} md={12} lg={12} xl={12} className="mt-3">
+              <FormInput
+                name="serviceBanner"
+                type="text"
+                size="large"
+                label="Image Banner Url"
+              />
+            </Col>
+            <Col xs={12} sm={12} md={12} lg={12} xl={12} className="mt-3">
+              <FormMultiSelectField
+                name="servicesImages"
+                size="large"
+                label="Add More Image Url"
+                placeholder="Separate with comma ','"
+              />
+            </Col>
             <Col xs={24} sm={24} md={24} lg={24} xl={24} className="mt-3">
               <p className="text-textPrimary text-lg font-bold mt-3 underline">
                 Service Areas:
@@ -127,9 +143,8 @@ const CreateServices: React.FC = () => {
             </Col>
 
             <Col xs={24} sm={24} md={12} lg={8} xl={8} className="mt-3">
-              <FormInput
+              <FormMultiSelectField
                 name="location.areaName"
-                type="text"
                 size="large"
                 label="Area Name"
               />

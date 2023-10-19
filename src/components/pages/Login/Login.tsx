@@ -34,6 +34,9 @@ const Login: React.FC = () => {
         router.push("/");
         message.success("Welcome Back");
       }
+      else{
+        message.error("incorrect email or password");
+      }
     } catch (error: any) {
       console.error(error.message);
     }

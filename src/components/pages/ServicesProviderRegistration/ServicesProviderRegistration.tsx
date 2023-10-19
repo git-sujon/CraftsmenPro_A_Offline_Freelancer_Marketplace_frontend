@@ -13,7 +13,11 @@ import LoadingPage from "@/app/loading";
 import servicesProviderImage from "../../../assets/images/Electrician-pana.png";
 import FormSelectFields from "@/components/Forms/FormSelectFields";
 
-import { getUserInfo, isUserLoggedIn } from "@/services/auth.services";
+import {
+  getUserInfo,
+  isUserLoggedIn,
+  removeUserInfo,
+} from "@/services/auth.services";
 import { useEffect, useState } from "react";
 import {
   categoriesOptions,
@@ -25,6 +29,8 @@ import { useGetMyProfileQuery } from "@/redux/api/userApi";
 
 import { tagTypes } from "@/redux/tagTypes";
 import { useAddServicesProviderMutation } from "@/redux/api/servicesProviderApi";
+import FormMultiSelectField from "@/components/Forms/FormMultiSelectField";
+import { authKey } from "@/constants/storageKeys";
 
 type FromValues = {
   id: string;
@@ -37,12 +43,12 @@ const ServiceProviderRegistration: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { data: userProfileData, isLoading: userProfileDataLoading } =
     useGetMyProfileQuery(undefined);
-    const [addServicesProvider] = useAddServicesProviderMutation()
+  const [addServicesProvider] = useAddServicesProviderMutation();
   const user: IJwtDecoded = getUserInfo() as IJwtDecoded;
 
-  if ( userProfileData && userProfileData?.role === tagTypes?.serviceProvider){
-    message.error("You already a Services Provider")
-   }
+  if (userProfileData && userProfileData?.role === tagTypes?.serviceProvider) {
+    message.error("You already a Services Provider");
+  }
 
   useEffect(() => {
     if (userProfileDataLoading) {
@@ -68,8 +74,6 @@ const ServiceProviderRegistration: React.FC = () => {
     return <LoadingPage />;
   }
 
- 
-
   const onsubmit: SubmitHandler<FromValues> = async (data: any) => {
     try {
       const userData = {
@@ -77,15 +81,17 @@ const ServiceProviderRegistration: React.FC = () => {
         ...data,
       };
 
-      console.log("userData:", userData)
+      console.log("userData:", userData);
 
-
-    
-        const response = await addServicesProvider({ ...userData }).unwrap();
-        console.log("response:", response);
-        // message.success("Now you are a services provider");
-        // message.success("Please Login Again");
-    
+      const response = await addServicesProvider({ ...userData }).unwrap();
+      console.log("response:", response);
+      if(response){
+        removeUserInfo(authKey);
+        message.success("Now you are a services provider");
+        message.success("Please Login Again");
+        router.push("/auth/login");
+      }
+      
     } catch (error: any) {
       console.error(error.message);
     }
@@ -126,19 +132,19 @@ const ServiceProviderRegistration: React.FC = () => {
               />
             </Col>
             <Col xs={24} sm={24} md={12} lg={8} xl={8} className="mt-3">
-              <FormSelectFields
+              <FormMultiSelectField
                 name="serviceType"
                 label="Service Type"
                 size="large"
                 options={homeServicesOptions}
-                placeholder="Select"
+                placeholder="write here ..."
               />
             </Col>
 
             <Col xs={24} sm={24} md={24} lg={24} xl={24} className="mt-3">
               <FormTextareaInput
                 name="description"
-                label="Description"
+                label="Write about provider..."
                 rows={8}
               />
             </Col>
@@ -175,7 +181,7 @@ const ServiceProviderRegistration: React.FC = () => {
             <Col xs={24} sm={24} md={24} lg={24} xl={24} className="mt-3">
               <FormTextareaInput
                 name="servicesOffered"
-                label="Services Offered"
+                label="Write in Details what you offer..."
                 rows={4}
               />
             </Col>

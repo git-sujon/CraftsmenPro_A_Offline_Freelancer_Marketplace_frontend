@@ -47,10 +47,7 @@ export const categoriesOptions: ISelectOptions[] = [
     label: 'Food and Catering',
     value: 'food-catering',
   },
-  {
-    label: 'Arts and Crafts',
-    value: 'arts-crafts',
-  },
+
 ].map((category) => ({
   label: category.label,
   value: category.value,
@@ -65,22 +62,7 @@ export const homeServicesOptions: ISelectOptions[] = [
       label: 'House Cleaning',
       value: 'house-cleaning',
     },
-    {
-      label: 'Plumbing',
-      value: 'plumbing',
-    },
-    {
-      label: 'Electrical Repairs',
-      value: 'electrical-repairs',
-    },
-    {
-      label: 'HVAC Services',
-      value: 'hvac-services',
-    },
-    {
-      label: 'Appliance Repair',
-      value: 'appliance-repair',
-    },
+    
     {
       label: 'Pest Control',
       value: 'pest-control',
@@ -89,10 +71,7 @@ export const homeServicesOptions: ISelectOptions[] = [
       label: 'Gardening and Landscaping',
       value: 'gardening-landscaping',
     },
-    {
-      label: 'Interior Design',
-      value: 'interior-design',
-    },
+  
     {
       label: 'Furniture Assembly',
       value: 'furniture-assembly',
@@ -109,6 +88,58 @@ export const homeServicesOptions: ISelectOptions[] = [
       label: 'Roof Repair',
       value: 'roof-repair',
     },
+
+
+    // maintenance-repairs
+
+    
+    {
+      label: 'Plumbing',
+      value: 'plumbing',
+    },
+    {
+      label: 'Electrical Repairs',
+      value: 'electrical-repairs',
+    },
+
+    {
+      label: 'Appliance Repair',
+      value: 'appliance-repair',
+    },
+    {
+      label: 'Painting Services',
+      value: 'painting-services',
+    },
+
+    // personal-care
+
+    {
+      label: 'Hair Styling',
+      value: 'hair-styling',
+    },
+    {
+      label: 'Skincare',
+      value: 'skincare',
+    },
+    {
+      label: 'Nail Services',
+      value: 'nail-services',
+    },
+    {
+      label: 'Spa and Massage',
+      value: 'spa-massage',
+    },
+
+    {
+      label: 'Makeup and Beauty',
+      value: 'makeup-beauty',
+    },
+    // food-catering
+
+
+
+
+
   ].map((service) => ({
     label: service.label,
     value: service.value,

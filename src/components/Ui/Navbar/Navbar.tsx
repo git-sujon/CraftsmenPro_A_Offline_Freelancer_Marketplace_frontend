@@ -1,5 +1,14 @@
 "use client";
-import { Button, Drawer, Layout, Menu } from "antd";
+import {
+  Avatar,
+  Button,
+  Drawer,
+  Dropdown,
+  Layout,
+  Menu,
+  MenuProps,
+  Space,
+} from "antd";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuOutlined, UserAddOutlined } from "@ant-design/icons";
@@ -10,7 +19,7 @@ import { authKey } from "@/constants/storageKeys";
 import { loggedIn, removeUserInfo } from "@/services/auth.services";
 import { useGetMyProfileQuery } from "@/redux/api/userApi";
 import Image from "next/image";
-
+import userAvatar from "../../../assets/images/User/profilePhoto.png";
 const { Header } = Layout;
 
 const Navbar = ({
@@ -45,11 +54,26 @@ const Navbar = ({
     setOpen(false);
   };
 
-
   const logoutHandler = () => {
     removeUserInfo(authKey);
     router.push("/auth/login");
   };
+
+  // const userProfileItems = [
+  //   { key: "1", label: "My Profile", href: "/user/my-profile" },
+  // ];
+
+  const userProfileItems = [
+    { key: "0", label: "My Profile", href: "/user/my-profile" },
+    {
+      key: "1",
+      label: (
+        <Button onClick={logoutHandler} type="text" danger>
+          Logout
+        </Button>
+      ),
+    },
+  ];
 
   return (
     <Layout className="layout ">
@@ -104,9 +128,22 @@ const Navbar = ({
             </Button>
 
             {isUserLogged ? (
-              <Button onClick={logoutHandler} type="text" danger>
-                Logout
-              </Button>
+              <>
+                <Dropdown menu={{ items: userProfileItems }}>
+                  <a onClick={(e) => e.preventDefault()}>
+                    <Avatar
+                      src={
+                        <Image
+                          src={userAvatar}
+                          width={80}
+                          height={80}
+                          alt="avatar"
+                        />
+                      }
+                    />
+                  </a>
+                </Dropdown>
+              </>
             ) : (
               <Button
                 href="/auth/login"
@@ -161,15 +198,23 @@ const Navbar = ({
                 <UserAddOutlined /> Become a Services Provider
               </Button>
               {isUserLogged ? (
-                <Button
-                  onClick={logoutHandler}
-                  type="text"
-                  className="  block mt-3"
-                  danger
-                >
-                  Logout
-                </Button>
-              ) : (
+              <>
+                <Dropdown menu={{ items: userProfileItems }} >
+                  <a onClick={(e) => e.preventDefault()} className="block mt-3">
+                    <Avatar
+                      src={
+                        <Image
+                          src={userAvatar}
+                          width={80}
+                          height={80}
+                          alt="avatar"
+                        />
+                      }
+                    />
+                  </a>
+                </Dropdown>
+              </>
+            ): (
                 <Button
                   href="/auth/login"
                   className=" hover:bg-secondary block mt-3"

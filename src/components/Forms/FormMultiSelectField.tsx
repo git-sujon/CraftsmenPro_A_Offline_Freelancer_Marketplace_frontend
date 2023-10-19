@@ -9,7 +9,7 @@ export type SelectOptions = {
 };
 
 type SelectFieldProps = {
-  options: SelectOptions[];
+  options?: SelectOptions[];
   name: string;
   size?: "large" | "small";
   value?: string | string[] | undefined;
@@ -44,7 +44,8 @@ const FormMultiSelectField = ({
             style={{ width: "100%" }}
             placeholder={placeholder}
             allowClear
-            mode="multiple"
+            mode="tags"
+            tokenSeparators={[',']}
           />
         )}
       />
