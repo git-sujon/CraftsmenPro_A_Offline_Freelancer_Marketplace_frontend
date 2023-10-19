@@ -7,17 +7,19 @@ export const servicesApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getServices: build.query({
       query: (arg: Record<string, any>) => ({
-        url: `${urlExtension}`,
+        url: urlExtension,
         method: "GET",
         params: arg,
       }),
       transformResponse: (response, meta) => {
         return {
-          departments: response,
-          meta,
+          services: response,
+          meta: meta,
         };
       },
-      providesTags: [tagTypes.user],
+      providesTags: [tagTypes.services],
+      //@ts-ignore
+      overrideExisting: true,
     }),
 
     getService: build.query({

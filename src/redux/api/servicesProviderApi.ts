@@ -13,7 +13,7 @@ export const servicesProviderApi = baseApi.injectEndpoints({
       }),
       transformResponse: (response, meta) => {
         return {
-          departments: response,
+          servicesProviders: response,
           meta,
         };
       },

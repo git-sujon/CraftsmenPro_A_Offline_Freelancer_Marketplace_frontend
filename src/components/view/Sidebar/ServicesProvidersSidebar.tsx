@@ -64,9 +64,9 @@ const ServicesProvidersSidebar = ({
   }
 
   const items = [
-    { key: "1", label: "Profile", href: "/services-providers/profile" },
-    { key: "2", label: "Create Services", href: "/services-providers/create-services" },
-    { key: "3", label: "My Services", href: "/services-providers/my-services" },
+    { key: "1", label: "Profile", href: "/service_provider/profile" },
+    { key: "2", label: "Create Services", href: "/service_provider/create-services" },
+    { key: "3", label: "My Services", href: "/service_provider/my-services" },
   ];
 
   return <Sidebar items={items}>{children}</Sidebar>;

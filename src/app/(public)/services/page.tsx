@@ -1,9 +1,7 @@
-"use client";
+
 import TopBreadCrump from "@/components/Ui/BreadCrump/TopBreadCrump";
-import Filtering from "@/components/Ui/SearchingFilteringSortingPagination/Filtering";
-import PaginationBar from "@/components/Ui/SearchingFilteringSortingPagination/Pagination";
-import SearchBar from "@/components/Ui/SearchingFilteringSortingPagination/SearchBar";
-import Sorting from "@/components/Ui/SearchingFilteringSortingPagination/Sorting";
+import Services from "@/components/pages/Services/Services";
+
 
 const ServicesPage = () => {
   return (
@@ -16,28 +14,7 @@ const ServicesPage = () => {
           },
         ]}
       />
-      {/* Search  */}
-      <div className="bg-orange-100  py-16">
-        <SearchBar />
-      </div>
-
-      <div className="max-width">
-        {/* total count and shorting  */}
-        <div className="flex justify-between items-center">
-          <div className=" font-bold">Total Services: 22</div>
-          <Sorting />
-        </div>
-
-        {/* Filtering and Services  */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-         <Filtering />
-          <div>Services</div>
-        </div>
-        {/* Pagination  */}
-        <div className="py-20">
-          <PaginationBar />
-        </div>
-      </div>
+      <Services />
     </div>
   );
 };

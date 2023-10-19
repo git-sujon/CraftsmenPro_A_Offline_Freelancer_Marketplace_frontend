@@ -16,10 +16,11 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { showSidebarDrawer } from "@/redux/slices/sidebarSlice";
 import { authKey } from "@/constants/storageKeys";
-import { loggedIn, removeUserInfo } from "@/services/auth.services";
+import { getUserInfo, loggedIn, removeUserInfo } from "@/services/auth.services";
 import { useGetMyProfileQuery } from "@/redux/api/userApi";
 import Image from "next/image";
 import userAvatar from "../../../assets/images/User/profilePhoto.png";
+import { IJwtDecoded } from "@/types/user";
 const { Header } = Layout;
 
 const Navbar = ({
@@ -59,12 +60,13 @@ const Navbar = ({
     router.push("/auth/login");
   };
 
-  // const userProfileItems = [
-  //   { key: "1", label: "My Profile", href: "/user/my-profile" },
-  // ];
+const decodedUser:IJwtDecoded = getUserInfo()
+
+
+
 
   const userProfileItems = [
-    { key: "1", label: "My Profile", href: "/user/my-profile" },
+    { key: "1", label: (<Link href={`/${decodedUser?.role}/profile`}>My Profile</Link>), href: "" },
     {
       key: "2",
       label: (

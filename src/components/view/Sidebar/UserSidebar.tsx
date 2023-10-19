@@ -26,7 +26,7 @@ const UserSidebar = ({ children }: { children: React.ReactNode }) => {
 
   const items = [
     { key: "1", label: "Profile", href: "/user/profile" },
-    { key: "2", label: "Create", href: "/user/my-booking" },
+    { key: "2", label: "My Booking", href: "/user/my-booking" },
 
   ];
 

@@ -1,23 +1,21 @@
-
 import { authKey } from "@/constants/storageKeys";
+import { IGenericErrorResponse, ResponseSuccessType } from "@/types/common";
 import { getFromLocalStorage } from "@/utils/localStorage";
 import axios from "axios";
 
-const axiosInstance = axios.create();
-
-axiosInstance.defaults.headers.post["Content-Type"] = "application/json";
-axiosInstance.defaults.headers["Accept"] = "application/json";
-axiosInstance.defaults.timeout = 60000;
+const instance = axios.create();
+instance.defaults.headers.post["Content-Type"] = "application/json";
+instance.defaults.headers["Accept"] = "application/json";
+instance.defaults.timeout = 60000;
 
 // Add a request interceptor
-axiosInstance.interceptors.request.use(
+instance.interceptors.request.use(
   function (config) {
+    // Do something before request is sent
     const accessToken = getFromLocalStorage(authKey);
-
     if (accessToken) {
       config.headers.Authorization = accessToken;
     }
-
     return config;
   },
   function (error) {
@@ -27,27 +25,28 @@ axiosInstance.interceptors.request.use(
 );
 
 // Add a response interceptor
-axiosInstance.interceptors.response.use(
-  // @ts-ignore
+instance.interceptors.response.use(
+  //@ts-ignore
   function (response) {
-
-   
-    const responseData = {
+    const responseObject: ResponseSuccessType = {
       data: response?.data?.data,
-      meta: response?.data?.meta
+      meta: response?.data?.meta,
     };
-
-    return responseData;
+    return responseObject;
   },
-  function (error) {
-    const errorResponse = {
-      statusCode: error?.response?.data?.status || 500,
-      message: error?.response?.data?.message || "something went wrong",
-      errorMessages: error?.response?.data?.message,
-    };
+  async function (error) {
+    if (error?.response?.status === 403) {
+    } else {
+      const responseObject: IGenericErrorResponse = {
+        statusCode: error?.response?.data?.statusCode || 500,
+        message: error?.response?.data?.message || "Something went wrong",
+        errorMessages: error?.response?.data?.message,
+      };
+      return responseObject;
+    }
 
-    return errorResponse
+    // return Promise.reject(error);
   }
 );
 
-export { axiosInstance };
+export { instance };
