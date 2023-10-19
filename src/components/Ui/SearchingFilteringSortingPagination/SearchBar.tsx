@@ -43,7 +43,8 @@ const SearchBar = () => {
             name="search"
             suffix={audioIcon ? suffix : null}
             prefix={<BiSearch className="text-primary text-xl" />}
-            className=" border-none outline-none"
+            // className=" border-t-0 border-b border-r-0 border-l-0 rounded-none  outline-none "
+            className=" border-none  outline-none "
           />
 
             <Button className="rounded-full " type="primary" htmlType="submit" size="large">

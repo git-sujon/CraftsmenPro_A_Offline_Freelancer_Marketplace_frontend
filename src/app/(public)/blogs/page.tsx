@@ -1,5 +1,5 @@
 import TopBreadCrump from "@/components/Ui/BreadCrump/TopBreadCrump";
-import SearchBar from "@/components/Ui/SearchAndFilter/SearchBar";
+import SearchBar from "@/components/Ui/SearchingFilteringSortingPagination/SearchBar";
 
 const BlogPage = () => {
   return (

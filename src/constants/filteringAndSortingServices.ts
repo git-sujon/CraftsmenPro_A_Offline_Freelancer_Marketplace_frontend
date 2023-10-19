@@ -1,4 +1,5 @@
 export const sortingOptions = [
+    { label: 'Show all', value: '|' },
     { label: 'Most Popular', value: 'popularity|desc' },
     { label: 'Price: Low to High', value: 'price|asc' },
     { label: 'Price: High to Low', value: 'price|desc' },

@@ -1,5 +1,8 @@
+"use client";
 import TopBreadCrump from "@/components/Ui/BreadCrump/TopBreadCrump";
-import SearchBar from "@/components/Ui/SearchAndFilter/SearchBar";
+import PaginationBar from "@/components/Ui/SearchingFilteringSortingPagination/Pagination";
+import SearchBar from "@/components/Ui/SearchingFilteringSortingPagination/SearchBar";
+import Sorting from "@/components/Ui/SearchingFilteringSortingPagination/Sorting";
 
 const ServicesPage = () => {
   return (
@@ -13,7 +16,7 @@ const ServicesPage = () => {
         ]}
       />
       {/* Search  */}
-      <div className="bg-orange-200  py-16">
+      <div className="bg-orange-100  py-16">
         <SearchBar />
       </div>
 
@@ -21,13 +24,17 @@ const ServicesPage = () => {
         {/* total count and shorting  */}
         <div className="flex justify-between items-center">
           <div className=" font-bold">Total Services: 22</div>
-        
+          <Sorting />
         </div>
 
         {/* Filtering and Services  */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <div>Filtering</div>
           <div>Services</div>
+        </div>
+        {/* Pagination  */}
+        <div className="py-20">
+          <PaginationBar />
         </div>
       </div>
     </div>
