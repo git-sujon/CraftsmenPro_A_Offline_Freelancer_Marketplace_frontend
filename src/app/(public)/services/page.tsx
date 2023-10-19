@@ -1,5 +1,6 @@
 "use client";
 import TopBreadCrump from "@/components/Ui/BreadCrump/TopBreadCrump";
+import Filtering from "@/components/Ui/SearchingFilteringSortingPagination/Filtering";
 import PaginationBar from "@/components/Ui/SearchingFilteringSortingPagination/Pagination";
 import SearchBar from "@/components/Ui/SearchingFilteringSortingPagination/SearchBar";
 import Sorting from "@/components/Ui/SearchingFilteringSortingPagination/Sorting";
@@ -29,7 +30,7 @@ const ServicesPage = () => {
 
         {/* Filtering and Services  */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <div>Filtering</div>
+         <Filtering />
           <div>Services</div>
         </div>
         {/* Pagination  */}
