@@ -43,7 +43,7 @@ const PaginationBar: React.FC = () => {
   };
   return (
     <Pagination
-      className="max-w-3xl mx-auto"
+      className=""
       showSizeChanger
       onShowSizeChange={onShowSizeChange}
       defaultCurrent={1}

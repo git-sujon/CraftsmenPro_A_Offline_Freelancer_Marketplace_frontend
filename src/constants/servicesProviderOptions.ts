@@ -84,10 +84,7 @@ export const homeServicesOptions: ISelectOptions[] = [
       label: 'Carpet Cleaning',
       value: 'carpet-cleaning',
     },
-    {
-      label: 'Roof Repair',
-      value: 'roof-repair',
-    },
+   
 
 
     // maintenance-repairs
@@ -109,6 +106,11 @@ export const homeServicesOptions: ISelectOptions[] = [
     {
       label: 'Painting Services',
       value: 'painting-services',
+    },
+
+    {
+      label: 'Roof Repair',
+      value: 'roof-repair',
     },
 
     // personal-care

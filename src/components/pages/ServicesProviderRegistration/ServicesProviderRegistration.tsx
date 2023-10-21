@@ -115,10 +115,10 @@ const ServiceProviderRegistration: React.FC = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24} sm={24} md={12} lg={8} xl={8} className="mt-3">
               <FormInput
-                name="companyName"
+                name="providerName"
                 type="text"
                 size="large"
-                label="Company Name"
+                label="Provider Name"
               />
             </Col>
 
@@ -133,8 +133,8 @@ const ServiceProviderRegistration: React.FC = () => {
             </Col>
             <Col xs={24} sm={24} md={12} lg={8} xl={8} className="mt-3">
               <FormMultiSelectField
-                name="serviceType"
-                label="Service Type"
+                name="serviceTypes"
+                label="Service Types or Skills"
                 size="large"
                 options={homeServicesOptions}
                 placeholder="write here ..."
@@ -145,7 +145,7 @@ const ServiceProviderRegistration: React.FC = () => {
               <FormTextareaInput
                 name="description"
                 label="Write about provider..."
-                rows={8}
+                rows={6}
               />
             </Col>
 
@@ -170,13 +170,31 @@ const ServiceProviderRegistration: React.FC = () => {
             </Col>
 
             <Col xs={24} sm={24} md={12} lg={8} xl={8} className="mt-3">
-              <FormInput
+            <FormMultiSelectField
                 name="serviceAreas.areaName"
-                type="text"
                 size="large"
                 label="Area Name"
               />
             </Col>
+
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mt-3">
+              <FormInput
+                name="providerProfileImage"
+                type="text"
+                size="large"
+                label="Provider Profile Picture or Logo"
+              />
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mt-3">
+              <FormInput
+                name="experience"
+                type="number"
+                size="large"
+                label="Total Experience ex: 1.5 or 0.3"
+                placeHolder="Ex: 3.5 or  0.6"
+              />
+            </Col>
+
 
             <Col xs={24} sm={24} md={24} lg={24} xl={24} className="mt-3">
               <FormTextareaInput

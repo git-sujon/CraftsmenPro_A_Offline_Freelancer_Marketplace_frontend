@@ -15,30 +15,33 @@ const UserProfile = () => {
 
   // console.log("user:", user)
 
-  const user = {
-    location: {
-      city: "brahmanbaria",
-      division: "rangpur",
-    },
-    _id: "652a9fba918e186d1fe22ca2",
-    name: {
-      firstName: "Moniruzzaman",
-      lastName: "Sujon",
-      _id: "652a9fba918e186d1fe22ca3",
-      id: "652a9fba918e186d1fe22ca3",
-    },
-    email: "git.sujon@gmail.com",
-    phoneNumber: "+8801623985191",
-    gender: "male",
-    role: "user",
-    isServiceProvider: false,
-    servicesBooked: [],
-    reviews: [],
-    createdAt: "2023-10-14T14:03:38.890Z",
-    updatedAt: "2023-10-14T14:03:38.890Z",
-    __v: 0,
-    id: "652a9fba918e186d1fe22ca2",
-  };
+ const user = {
+  "location": {
+      "city": "dhaka",
+      "division": "dhaka"
+  },
+  "_id": "6532a562d9ffd784f438d106",
+  "name": {
+      "firstName": "Moniruzzaman",
+      "lastName": "Sujon",
+      "_id": "6532a562d9ffd784f438d107",
+      "id": "6532a562d9ffd784f438d107"
+  },
+  "email": "git.sujon@gmail.com",
+  "phoneNumber": "+8801623985191",
+  "gender": "male",
+  "role": "user",
+  "isServiceProvider": false,
+  "isOnline": true,
+  "isBlocked": false,
+  "servicesBooked": [],
+  "reviews": [],
+  "createdAt": "2023-10-20T16:05:54.428Z",
+  "updatedAt": "2023-10-20T16:05:54.428Z",
+  "__v": 0,
+  "id": "6532a562d9ffd784f438d106"
+}
+  console.log("user:", user)
 
   return (
     <div>

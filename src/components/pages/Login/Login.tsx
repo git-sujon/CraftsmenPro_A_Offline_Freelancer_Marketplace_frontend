@@ -61,7 +61,7 @@ const Login: React.FC = () => {
           <h1 className="text-4xl font-bold text-textPrimary mb-6">Login</h1>
           <div className="text-textSecondary">
             {"Doesn't have an account?"}
-            <Button type="dashed" className="ml-2 " href="/auth/signup">
+            <Button type="primary" className="ml-2" href="/auth/signup">
               Sign up
             </Button>
           </div>

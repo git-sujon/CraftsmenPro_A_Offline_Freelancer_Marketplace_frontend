@@ -46,14 +46,14 @@ const Filtering = () => {
           <Radio.Group
             name="ratings"
             onChange={onRatingChange}
-            defaultValue={5}
+            defaultValue={0}
             className="text"
             size="small"
           >
            <Space direction="vertical">
             {[5, 4, 3, 2, 1].map((rating) => (
-              <Radio.Button key={rating} value={rating}>
-                <Rate disabled defaultValue={rating} className="px-1" />
+              <Radio.Button key={rating} value={rating} className="cursor-pointer">
+                <Rate disabled defaultValue={rating} className="px-1 cursor-pointer" />
               </Radio.Button>
             ))}
           </Space>

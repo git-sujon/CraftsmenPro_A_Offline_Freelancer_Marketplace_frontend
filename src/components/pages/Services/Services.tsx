@@ -8,38 +8,37 @@ import { useGetServicesQuery } from "@/redux/api/servicesApi";
 
 import { IMeta } from "@/types/common";
 import React, { useState } from "react";
+import ServicesCard from "./ServicesCard";
+
+import { Col, Row } from "antd";
+import { servicesData } from "@/constants/servicesData";
 const Services = () => {
+  const [page, setPage] = useState<number>(1);
+  const [size, setSize] = useState<number>(10);
+  const [sortBy, setSortBy] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
+  // const query = {
+  //   limit: size,
+  //   page: page,
+  //   sortBy: sortBy,
+  //   sortOrder: sortOrder,
+  //   searchTerm: searchTerm,
+  // };
 
-    const [page, setPage] = useState<number>(1);
-    const [size, setSize] = useState<number>(10);
-    const [sortBy, setSortBy] = useState<string>("");
-    const [sortOrder, setSortOrder] = useState<string>("");
-    const [searchTerm, setSearchTerm] = useState<string>("");
-  
+  //   const { data, isLoading } = useGetServicesQuery(query);
 
+  // if(isLoading){
+  //     return <LoadingPage />
+  // }
 
-    const query = {
-        limit: size,
-        page: page,
-        sortBy: sortBy,
-        sortOrder: sortOrder,
-        searchTerm: searchTerm,
-      };
-      
-    //   const { data, isLoading } = useGetServicesQuery(query);
+  // const services = data?.services;
 
-    // if(isLoading){
-    //     return <LoadingPage />
-    // }
+  // console.log("services:", services)
 
-
-
-    // const services = data?.services;
-    // const meta: IMeta = data?.meta;
-
-
-
+  // const meta: IMeta = data?.meta;
+console.log(servicesData)
   return (
     <div>
       {/* Search  */}
@@ -48,21 +47,33 @@ const Services = () => {
       </div>
 
       <div className="max-width">
-        {/* total count and shorting  */}
-        <div className="flex justify-between items-center">
-          <div className=" font-bold">Total Services: 22</div>
-          <Sorting />
-        </div>
-
         {/* Filtering and Services  */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <Filtering />
-          <div>Services</div>
-        </div>
-        {/* Pagination  */}
-        <div className="py-20">
-          <PaginationBar />
-        </div>
+        <Row gutter={[16, 16]} className="mt-6">
+          {/* Filtering */}
+          <Col xs={24} sm={24} md={24} lg={6} xl={6}>
+            <Filtering />
+          </Col>
+          {/*  Services  */}
+          <Col xs={24} sm={24} md={24} lg={18} xl={18}>
+            {/* total count and shorting  */}
+            <Col span={24} className="flex justify-between items-center mb-6">
+              <p className="text-semibold text-textSecondary">Total Services: 22</p>
+              <Sorting />
+            </Col>
+
+            <Row gutter={[16, 16]}>
+              {servicesData?.map((service) => (
+                <Col xs={24} sm={24} md={12} lg={8} xl={8} key={service._id}>
+                  <ServicesCard service={service} />
+                </Col>
+              ))}
+            </Row>
+            {/* Pagination  */}
+            <Col className="mt-16 max-w-3xl mx-auto">
+              <PaginationBar />
+            </Col>
+          </Col>
+        </Row>
       </div>
     </div>
   );
