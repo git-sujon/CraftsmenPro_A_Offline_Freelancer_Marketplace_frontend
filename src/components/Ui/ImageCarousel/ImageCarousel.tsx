@@ -13,7 +13,7 @@ const ImageCarousel = ({ images }:{images:string[]}) => {
     <Carousel autoplay>
       {images?.map((image, _idx) => (
         <div key={_idx}  >
-          <Image src={image} width={900} height={400} alt=""      />
+          <Image src={image} width={900} height={400} alt=""        layout="responsive"  />
         </div>
       ))}
     </Carousel>

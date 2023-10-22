@@ -4,13 +4,19 @@ import LoadingPage from "@/app/loading";
 import DescriptionParagraph from "@/components/Ui/DescriptionParagraph/DescriptionParagraph";
 import ImageCarousel from "@/components/Ui/ImageCarousel/ImageCarousel";
 import { useGetServiceQuery } from "@/redux/api/servicesApi";
-import { Avatar, Col, Collapse, List, Rate, Row, Tag, Typography } from "antd";
+import { Avatar, Card, Divider, List, Rate, Tag, Typography } from "antd";
 import { GiClockwork, GiCrown } from "react-icons/gi";
-import { GrMapLocation } from "react-icons/gr";
-import { BsFillPinMapFill, BsBookmarksFill } from "react-icons/bs";
-import { FaScrewdriverWrench } from "react-icons/fa6";
+
+import {
+  BsFillPinMapFill,
+  BsBookmarksFill,
+  BsHourglassTop,
+} from "react-icons/bs";
+import { FaScrewdriverWrench, FaMapLocationDot } from "react-icons/fa6";
 import { AiFillFolderAdd } from "react-icons/ai";
+import { TbCurrencyTaka } from "react-icons/tb";
 import FaqWithParagraphTag from "@/components/Ui/FaqWithParagraphTag/FaqWithParagraphTag";
+import ServiceCalender from "@/components/Ui/ServiceCalender/ServiceCalender";
 
 const ServicesDetails = ({ id }: { id: string }) => {
   //   const { data, isLoading, isSuccess, isError } = useGetServiceQuery(id);
@@ -188,7 +194,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
   const data = service?.features;
   return (
     <div>
-      <div className="mt-5 grid  grid-cols-6  gap-x-20">
+      <div className="mt-5 grid  grid-cols-6  gap-10">
         <div className="space-y-2  col-span-6 lg:col-span-4">
           <h1 className="text-textPrimary text-2xl lg:text-4xl font-bold">
             {service.title}
@@ -196,7 +202,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
 
           {/* avatar and ratings */}
 
-          <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center gap-x-2">
               <Avatar src={service?.servicesProvider?.providerProfileImage} />
               <div className="">
@@ -208,7 +214,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
                     allowHalf
                     defaultValue={service?.averageRating}
                     className="text-xs"
-                  />{" "}
+                  />
                   <p
                     dangerouslySetInnerHTML={{
                       __html: `(${Math.floor(Math.random() * 200)} Reviews)`,
@@ -225,9 +231,8 @@ const ServicesDetails = ({ id }: { id: string }) => {
 
             <div>
               {service?.isPopular ? (
-                <div className="flex items-center gap-x-1 text-textPrimary font-bold">
-                  {" "}
-                  <GiCrown  className="text-amber-500" /> Popular
+                <div className="flex items-center gap-x-1 text-textSecondary  font-bold">
+                  <GiCrown className="text-amber-500 w-10 h-10" /> Popular
                 </div>
               ) : (
                 ""
@@ -259,7 +264,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
             </div>
             {/* Area */}
             <div className="flex items-center  gap-x-2 mt-2">
-              <GrMapLocation className="text-2xl text-primary" />
+              <FaMapLocationDot className="text-2xl text-primary" />
               <p>{service?.location?.areaName?.join(", ")}</p>
             </div>
           </div>
@@ -284,15 +289,50 @@ const ServicesDetails = ({ id }: { id: string }) => {
             renderItem={(item) => (
               <List.Item>
                 <Typography.Text>
-                  <FaScrewdriverWrench />{" "}
-                </Typography.Text>{" "}
+                  <FaScrewdriverWrench />
+                </Typography.Text>
                 {item}
               </List.Item>
             )}
           ></List>
         </div>
         <div className="col-span-6 lg:col-span-2 ">
-          <div className="">Right side</div>
+          <div className="">
+            {/* duration and price  */}
+            <Card className="bg-green-50">
+              <div className="flex items-center justify-between ">
+                {/* duration */}
+                <div className="flex items-center gap-x-1">
+                  <BsHourglassTop className="w-8 h-8 text-primary" />
+                  <p className="text-xl font-bold text-textPrimary">
+                    {service.duration / 60}
+                    <span className="text-sm font-bold text-textPrimary">
+                      {" Hours"}
+                    </span>
+                  </p>
+                </div>
+                {/* Price */}
+                <div className="flex items-center gap-x-1">
+                  <p className="text-2xl font-extrabold text-textPrimary">
+                    {service?.price}0
+                  </p>
+                  <TbCurrencyTaka className="w-8 h-8 text-primary" />
+                </div>
+              </div>
+            </Card>
+
+            {/* Schedule  */}
+
+            <Card  size="small" >
+              <Divider
+                orientation="left"
+                className="text-textPrimary text-xl font-bold"
+              >
+                Schedule
+              </Divider>
+              <ServiceCalender />
+            </Card>
+          </div>
         </div>
       </div>
 
