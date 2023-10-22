@@ -38,7 +38,7 @@ const Services = () => {
   // console.log("services:", services)
 
   // const meta: IMeta = data?.meta;
-console.log(servicesData)
+// console.log(servicesData)
   return (
     <div>
       {/* Search  */}

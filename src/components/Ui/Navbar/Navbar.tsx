@@ -60,7 +60,7 @@ const Navbar = ({
     router.push("/auth/login");
   };
 
-const decodedUser:IJwtDecoded = getUserInfo()
+const decodedUser:IJwtDecoded = getUserInfo() as IJwtDecoded;
 
 
 
@@ -78,8 +78,8 @@ const decodedUser:IJwtDecoded = getUserInfo()
   ];
 
   return (
-    <Layout className="layout ">
-      <Header className="flex items-center justify-between lg:justify-start lg:gap-x-10 bg-[#fff8f6]">
+    <Layout className=" max-width bg-[#fff8f6]">
+      <Header className="flex items-center justify-between lg:justify-start lg:gap-x-10  bg-[#fff8f6] ">
         <div className="flex items-center justify-between ">
           <Button
             type="primary"

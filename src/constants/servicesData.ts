@@ -28,7 +28,7 @@ export const servicesData = [
             "role": "Electrical Specialist",
             "_id": "6532af8fd9ffd784f438d116"
         },
-        "averageRating": 4.8,
+        "averageRating": 2.8,
         "availableTimeSlots": [
             {
                 "date": "2023-11-10T00:00:00.000Z",
