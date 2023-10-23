@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from "react";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
-import { Alert, Calendar } from "antd";
+import { Alert, Calendar, TimePicker } from "antd";
 import { setToLocalStorage, getFromLocalStorage } from "@/utils/localStorage";
 
 dayjs.locale("bn-bd");
-
 const ServiceCalender = ({ bookedTimeSlots }: { bookedTimeSlots: any }) => {
   const currentDate = dayjs();
 
@@ -57,6 +56,7 @@ const ServiceCalender = ({ bookedTimeSlots }: { bookedTimeSlots: any }) => {
         onPanelChange={onPanelChange}
         disabledDate={isDateDisabled}
       />
+
     </div>
   );
 };

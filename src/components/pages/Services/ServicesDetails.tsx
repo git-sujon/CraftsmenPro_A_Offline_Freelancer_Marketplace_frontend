@@ -17,6 +17,7 @@ import { AiFillFolderAdd } from "react-icons/ai";
 import { TbCurrencyTaka } from "react-icons/tb";
 import FaqWithParagraphTag from "@/components/Ui/FaqWithParagraphTag/FaqWithParagraphTag";
 import ServiceCalender from "@/components/Ui/ServiceCalender/ServiceCalender";
+import SelectServiceTime from "@/components/Ui/SelectServiceTime/SelectServiceTime";
 
 const ServicesDetails = ({ id }: { id: string }) => {
   //   const { data, isLoading, isSuccess, isError } = useGetServiceQuery(id);
@@ -331,6 +332,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
                 Schedule
               </Divider>
               <ServiceCalender bookedTimeSlots={service?.availableTimeSlots}/>
+              <SelectServiceTime />
             </Card>
           </div>
         </div>
