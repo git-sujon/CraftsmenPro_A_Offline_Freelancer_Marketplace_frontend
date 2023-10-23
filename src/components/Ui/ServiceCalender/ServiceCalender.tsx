@@ -1,16 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 import { Alert, Calendar } from "antd";
+import { setToLocalStorage, getFromLocalStorage } from "@/utils/localStorage";
 
-const ServiceCalender = () => {
-  const [value, setValue] = useState(() => dayjs(Date.now()));
-  const [selectedValue, setSelectedValue] = useState(() => dayjs(Date.now()));
+dayjs.locale("bn-bd");
 
-  console.log("selectedValue:", selectedValue);
+const ServiceCalender = ({ bookedTimeSlots }: { bookedTimeSlots: any }) => {
+  const currentDate = dayjs();
+
+  const storedDateStr = getFromLocalStorage("selectedServicesDate");
+  const storedDate = storedDateStr ? dayjs(storedDateStr) : currentDate;
+
+  const [value, setValue] = useState(storedDate);
+  const [selectedValue, setSelectedValue] = useState(storedDate);
 
   const onSelect = (newValue: Dayjs) => {
+    const formattedDate = newValue.format(); // Format the date
+    setToLocalStorage("selectedServicesDate", formattedDate);
     setValue(newValue);
     setSelectedValue(newValue);
   };
@@ -18,6 +26,24 @@ const ServiceCalender = () => {
   const onPanelChange = (newValue: Dayjs) => {
     setValue(newValue);
   };
+
+  const isDateDisabled = (currentDate: Dayjs) => {
+    const today = dayjs();
+    if (currentDate.isBefore(today, "day")) {
+      return true;
+    }
+    const isBooked = bookedTimeSlots?.some((slot: any) =>
+      currentDate.isSame(dayjs(slot.date), "day")
+    );
+    return isBooked;
+  };
+
+  useEffect(() => {
+    const storedDateStr = getFromLocalStorage("selectedServicesDate");
+    if (storedDateStr) {
+      setSelectedValue(dayjs(storedDateStr));
+    }
+  }, []);
 
   return (
     <div>
@@ -29,6 +55,7 @@ const ServiceCalender = () => {
         value={value}
         onSelect={onSelect}
         onPanelChange={onPanelChange}
+        disabledDate={isDateDisabled}
       />
     </div>
   );

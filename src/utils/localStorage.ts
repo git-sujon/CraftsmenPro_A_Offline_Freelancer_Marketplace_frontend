@@ -1,14 +1,37 @@
-export const setToLocalStorage = (key: string, value: string) => {
-  if (!key || typeof window === "undefined") {
-    return "";
+export const setToLocalStorage = (key: string, value: any) => {
+  if (typeof window === "undefined") {
+    // Handle the case where window is not defined (e.g., server-side rendering)
+    return;
   }
 
-  return localStorage.setItem(key, value);
+  if (!key) {
+    console.error("Key is required to set a value in local storage.");
+    return;
+  }
+
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.error("Error while setting value in local storage:", error);
+  }
 };
+
 export const getFromLocalStorage = (key: string) => {
-  if (!key || typeof window === "undefined") {
-    return "";
+  if (typeof window === "undefined") {
+    // Handle the case where window is not defined (e.g., server-side rendering)
+    return null;
   }
 
-  return localStorage.getItem(key);
+  if (!key) {
+    console.error("Key is required to get a value from local storage.");
+    return null;
+  }
+
+  try {
+    const storedValue = localStorage.getItem(key);
+    return storedValue ? JSON.parse(storedValue) : null;
+  } catch (error) {
+    console.error("Error while getting value from local storage:", error);
+    return null;
+  }
 };

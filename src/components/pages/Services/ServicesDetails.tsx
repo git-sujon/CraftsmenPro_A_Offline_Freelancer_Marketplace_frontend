@@ -56,12 +56,12 @@ const ServicesDetails = ({ id }: { id: string }) => {
     averageRating: 4.8,
     availableTimeSlots: [
       {
-        date: "2023-11-10T00:00:00.000Z",
+        date: "2023-10-28T00:00:00.000Z",
         time: "10:00 AM",
         _id: "6532af8fd9ffd784f438d117",
       },
       {
-        date: "2023-11-10T00:00:00.000Z",
+        date: "2023-10-29T00:00:00.000Z",
         time: "02:00 PM",
         _id: "6532af8fd9ffd784f438d118",
       },
@@ -330,7 +330,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
               >
                 Schedule
               </Divider>
-              <ServiceCalender />
+              <ServiceCalender bookedTimeSlots={service?.availableTimeSlots}/>
             </Card>
           </div>
         </div>
