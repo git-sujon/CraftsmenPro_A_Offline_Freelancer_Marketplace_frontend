@@ -11,7 +11,6 @@ import React, { useState } from "react";
 import ServicesCard from "./ServicesCard";
 
 import { Col, Row } from "antd";
-import { servicesData } from "@/constants/servicesData";
 const Services = () => {
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
@@ -19,26 +18,29 @@ const Services = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  // const query = {
-  //   limit: size,
-  //   page: page,
-  //   sortBy: sortBy,
-  //   sortOrder: sortOrder,
-  //   searchTerm: searchTerm,
-  // };
+  const query = {
+    limit: size,
+    page: page,
+    sortBy: sortBy,
+    sortOrder: sortOrder,
+    searchTerm: searchTerm,
+  };
 
-  //   const { data, isLoading } = useGetServicesQuery(query);
+    const { data, isLoading } = useGetServicesQuery(query);
 
-  // if(isLoading){
-  //     return <LoadingPage />
-  // }
+  if(isLoading){
+      return <LoadingPage />
+  }
 
-  // const services = data?.services;
+  const services = data?.services;
 
-  // console.log("services:", services)
 
-  // const meta: IMeta = data?.meta;
-// console.log(servicesData)
+
+  const meta: IMeta = data?.meta;
+
+
+
+
   return (
     <div>
       {/* Search  */}
@@ -57,12 +59,12 @@ const Services = () => {
           <Col xs={24} sm={24} md={24} lg={18} xl={18}>
             {/* total count and shorting  */}
             <Col span={24} className="flex justify-between items-center mb-6">
-              <p className="text-semibold text-textSecondary">Total Services: 22</p>
+              <p className="text-semibold text-textSecondary">Total Services: {meta?.total}</p>
               <Sorting />
             </Col>
 
             <Row gutter={[16, 16]}>
-              {servicesData?.map((service) => (
+              {services?.map((service:any) => (
                 <Col xs={24} sm={24} md={12} lg={8} xl={8} key={service._id}>
                   <ServicesCard service={service} />
                 </Col>

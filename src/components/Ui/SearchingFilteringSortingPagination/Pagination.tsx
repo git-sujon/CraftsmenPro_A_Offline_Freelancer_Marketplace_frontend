@@ -6,13 +6,13 @@ import { FaHandPointLeft, FaHandPointRight } from "react-icons/fa";
 const PaginationBar: React.FC = () => {
   const [current, setCurrent] = useState(3);
 
-  console.log("current:", current);
+
 
   const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
     current,
     pageSize
   ) => {
-    console.log(pageSize);
+
   };
 
   const onChange: PaginationProps["onChange"] = (page) => {

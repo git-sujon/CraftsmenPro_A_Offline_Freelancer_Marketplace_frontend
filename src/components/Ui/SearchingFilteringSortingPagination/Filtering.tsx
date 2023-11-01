@@ -4,7 +4,11 @@ import React, { useState } from "react";
 import type { RadioChangeEvent } from "antd";
 import { Radio } from "antd";
 import { Rate } from "antd";
-import { ICategory, categories } from "@/constants/browserByCatagories";
+import { ICategory} from "@/constants/browserByCatagories";
+import useGetUniqueFieldDataWithCount from "@/hooks/useGetUniqueFieldDataWithCount";
+import {
+  envConfig
+} from "@/helpers/config/envConfig";
 const Filtering = () => {
   const [categoryValue, setCategoryValue] = useState(0);
   const [ratingValue, setRatingValue] = useState(5);
@@ -17,6 +21,16 @@ const Filtering = () => {
     console.log("radio checked", e.target.value);
     setRatingValue(e.target.value);
   };
+  console.log(useGetUniqueFieldDataWithCountUrl);
+  const { fieldDataWithCount: courseCategories, isLoading } =
+    useGetUniqueFieldDataWithCount(
+      envConfig.useGetUniqueFieldDataWithCountUrl,
+      "category"
+    );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
@@ -30,9 +44,9 @@ const Filtering = () => {
             defaultValue={1}
           >
             <Space direction="vertical">
-              {categories?.map((category: ICategory) => (
-                <Radio key={category.id} value={category.value}>
-                  {category.label}
+              {courseCategories?.map((category: ICategory) => (
+                <Radio key={category?.fieldValue} value={category?.fieldValue}>
+                  {category?.fieldValue} {`(${category?.totalCount})`}
                 </Radio>
               ))}
             </Space>
@@ -50,13 +64,21 @@ const Filtering = () => {
             className="text"
             size="small"
           >
-           <Space direction="vertical">
-            {[5, 4, 3, 2, 1].map((rating) => (
-              <Radio.Button key={rating} value={rating} className="cursor-pointer">
-                <Rate disabled defaultValue={rating} className="px-1 cursor-pointer" />
-              </Radio.Button>
-            ))}
-          </Space>
+            <Space direction="vertical">
+              {[5, 4, 3, 2, 1].map((rating) => (
+                <Radio.Button
+                  key={rating}
+                  value={rating}
+                  className="cursor-pointer"
+                >
+                  <Rate
+                    disabled
+                    defaultValue={rating}
+                    className="px-1 cursor-pointer"
+                  />
+                </Radio.Button>
+              ))}
+            </Space>
           </Radio.Group>
         </div>
       </div>

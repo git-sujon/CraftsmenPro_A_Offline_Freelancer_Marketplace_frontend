@@ -31,178 +31,14 @@ import ServicesProviderProfileHeader from "@/components/ServicesProvider/Service
 import ServicesProviderSchedule from "@/components/ServicesProvider/ServicesProviderSchedule/ServicesProviderSchedule";
 
 const ServicesDetails = ({ id }: { id: string }) => {
-  //   const { data, isLoading, isSuccess, isError } = useGetServiceQuery(id);
+    const { data:service, isLoading } = useGetServiceQuery(id);
 
-  //   if (isLoading) {
-  //     return <LoadingPage />;
-  //   }
 
-  const service = {
-    _id: "6532af8fd9ffd784f438d114",
-    title: "Electrical Repairs Service",
-    description:
-      "<p>Our electrical repair service is here to solve all your electrical issues and ensure a safe and functioning electrical system in your home or office. Our experienced electricians are experts in diagnosing and fixing a wide range of electrical problems.</p><p>Whether you're dealing with faulty wiring, power outages, or electrical appliance issues, we've got you covered. We use high-quality materials and follow best practices to deliver lasting solutions.</p><p>Don't compromise on the safety and functionality of your electrical systems. Contact us today for reliable and professional electrical repairs that ensure peace of mind.</p>",
-    category: "Maintenance and Repairs",
-    subcategory: "Electrical Repairs",
-    price: 80,
-    serviceBanner:
-      "https://www.aperfectgoldman.com/wp-content/uploads/2019/05/repair-services.jpg",
-    servicesImages: [
-      "https://www.expertservicesutah.com/wp-content/uploads/2021/04/HomePage-HomeService-Electrical@2x.jpg",
-      "https://kowallelectric.com/wp-content/uploads/bb-plugin/cache/Electrician-Fixing-Light-Switch-landscape-d5796387de5635d9bdaa632410b6df7e-jha5v0g2mw1l.jpg",
-      "https://production-next-images-cdn.thumbtack.com/i/302057006217199795/width/640.jpeg",
-    ],
-    location: {
-      areaName: ["Gulshan", "Banani"],
-      cityName: "Dhaka",
-      division: "Dhaka",
-      _id: "6532af8fd9ffd784f438d115",
-    },
-    contact: {
-      name: "Sarah Johnson",
-      email: "sarah@example.com",
-      phone: "123-456-7890",
-      role: "Electrical Specialist",
-      _id: "6532af8fd9ffd784f438d116",
-    },
-    averageRating: 4.8,
-    availableTimeSlots: [
-      {
-        date: "2023-10-28T00:00:00.000Z",
-        time: "10:00 AM",
-        _id: "6532af8fd9ffd784f438d117",
-      },
-      {
-        date: "2023-10-29T00:00:00.000Z",
-        time: "02:00 PM",
-        _id: "6532af8fd9ffd784f438d118",
-      },
-    ],
-    bookedTimeSlots: [],
-    duration: 120,
-    servicesProvider: {
-      businessHours: {
-        sunday: "9:00 AM - 5:00 PM",
-        monday: "9:00 AM - 5:00 PM",
-        tuesday: "9:00 AM - 5:00 PM",
-        wednesday: "9:00 AM - 5:00 PM",
-        thursday: "9:00 AM - 5:00 PM",
-        friday: "9:00 AM - 5:00 PM",
-        saturday: "9:00 AM - 2:00 PM",
-      },
-      _id: "6532ad9fd9ffd784f438d10d",
-      user: "6532a562d9ffd784f438d106",
-      providerName: "Mega Repairs and Services",
-      serviceCategory: "Maintenance and Repairs",
-      serviceTypes: [
-        "plumbing",
-        "electrical-repairs",
-        "appliance-repair",
-        "painting-services",
-      ],
-      description:
-        "<p>Mega Repairs and Services is your trusted partner for all your maintenance and repair needs. With a commitment to excellence, we offer a wide range of services designed to keep your home in top condition.</p><p>Our team of experts specializes in plumbing, electrical repairs, appliance repair, and painting services. We use the latest techniques and high-quality materials to ensure the best results for our customers.</p><p>Whether you have a leaky faucet, electrical issues, a malfunctioning appliance, or need a fresh coat of paint, we've got you covered. We offer competitive pricing and convenient scheduling to meet your repair and maintenance needs.</p><p>Choose Mega Repairs and Services for a reliable and professional experience. Your satisfaction is our priority, and we look forward to serving you.</p>",
-      serviceAreas: [
-        {
-          areaName: ["Gulshan", "Banani"],
-          cityName: "Dhaka",
-          division: "Dhaka",
-          _id: "6532ada0d9ffd784f438d10e",
-        },
-      ],
-      servicesOffered: [
-        "Plumbing Services: We handle all your plumbing needs, from fixing leaks to installing fixtures.",
-        "Electrical Repairs: Our experts can diagnose and repair electrical issues to keep your home safe and functional.",
-        "Appliance Repair: We specialize in fixing appliances to ensure they run smoothly.",
-        "Painting Services: Give your home a fresh look with our professional painting services.",
-      ],
-      isVerified: true,
-      isAvailable: true,
-      providerProfileImage:
-        "https://upload.wikimedia.org/wikipedia/commons/c/c0/Logotipo_de_Mega_%282015-2020%29.png",
-      experience: 5,
-      averageRating: 4.7,
-      totalRatings: 85,
-      companyProfileImages: [
-        {
-          imageName: "Employee",
-          imageUrl:
-            "https://www.pioneerminisplit.com/cdn/shop/articles/VpDdG2FNQ9xRE7iIlKBarBbLLHnYUz341630085147.jpg?v=1631021244",
-          _id: "6532ada0d9ffd784f438d10f",
-        },
-        {
-          imageName: "Repairing",
-          imageUrl:
-            "https://shelterforce.org/wp-content/uploads/2022/05/TDA-Lunce-home-1-scaled.jpg",
-          _id: "6532ada0d9ffd784f438d110",
-        },
-        {
-          imageName: "Electrical Repairs",
-          imageUrl:
-            "https://3.imimg.com/data3/WR/EO/MY-16023780/electrical-electronics-installation-maintenance-500x500.jpg",
-          _id: "6532ada0d9ffd784f438d111",
-        },
-      ],
-      insurance: true,
-      licenses: [
-        "Licensed Plumber",
-        "Certified Electrician",
-        "Appliance Repair Specialist",
-        "Professional Painter",
-      ],
-      certifications: [
-        "https://marketplace.canva.com/EAFIEvneNCM/1/0/1600w/canva-golden-elegant-certificate-of-appreciation-0bN-aLORS9U.jpg",
-        "https://templatelab.com/wp-content/uploads/2022/06/Scholarship-Certificate-Template-1-scaled.jpg",
-      ],
-      serviceTags: [
-        "Professional",
-        "Reliable",
-        "Experienced",
-        "Quality Service",
-        "Timely Completion",
-      ],
-      __v: 0,
-    },
-    searchEngineOptimizationTags: [
-      "Electrical Repairs",
-      "Professional Electricians",
-      "Wiring Repair",
-    ],
-    features: [
-      "Expert Electricians",
-      "Wiring and Circuit Repair",
-      "Emergency Electrical Services",
-      "Transparent Pricing",
-      "Quality Workmanship",
-      "Satisfaction Guarantee",
-    ],
-    faqs: [
-      {
-        key: "1",
-        label: "What types of electrical issues do you address?",
-        children:
-          "<p>We address various electrical issues, including wiring problems, power outages, and appliance repair. Our team is equipped to handle a wide range of electrical problems.</p>",
-        _id: "6532af8fd9ffd784f438d119",
-      },
-      {
-        key: "2",
-        label: "Do you provide emergency electrical repair services?",
-        children:
-          "<p>Yes, we offer emergency electrical repair services to address urgent issues. Contact us, and our team will respond promptly to ensure your electrical systems are safe and functional.</p>",
-        _id: "6532af8fd9ffd784f438d11a",
-      },
-      {
-        key: "3",
-        label:
-          "Is your electrical repair service available in all areas of Dhaka?",
-        children:
-          "<p>We provide electrical repair services in various areas, including [list of service areas]. You can check our service coverage on our website or contact us for specific location inquiries.</p>",
-        _id: "6532af8fd9ffd784f438d11b",
-      },
-    ],
-    isPopular: true,
-    __v: 0,
-  };
+    if (isLoading) {
+      return <LoadingPage />;
+    }
+
+
   const data = service?.features;
   return (
     <div>
@@ -356,8 +192,8 @@ const ServicesDetails = ({ id }: { id: string }) => {
             dataSource={data}
             renderItem={(item) => (
               <List.Item>
-                <Typography.Text>
-                  <FaScrewdriverWrench />
+                <Typography.Text >
+                  <FaScrewdriverWrench className="mx-2"  />
                 </Typography.Text>
                 {item}
               </List.Item>
