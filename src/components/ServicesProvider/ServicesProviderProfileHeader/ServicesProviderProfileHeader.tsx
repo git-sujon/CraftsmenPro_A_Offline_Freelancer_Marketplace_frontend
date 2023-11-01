@@ -18,7 +18,7 @@ const ServicesProviderProfileHeader = ({
             <MdVerified className="text-blue-700 text-xl mt-[-10px]" />
           </div>
           <div className="">
-            <div className="flex items-center">
+            <div className="flex items-center gap-x-1">
               <MdCalendarMonth />
               <p>{servicesProvider?.experience} years experience</p>
             </div>

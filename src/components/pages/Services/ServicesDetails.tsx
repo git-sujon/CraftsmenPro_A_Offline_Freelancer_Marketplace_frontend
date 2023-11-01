@@ -379,13 +379,11 @@ const ServicesDetails = ({ id }: { id: string }) => {
             </div>
           </Card>
 
-          <Card className="bg-blue-50" size="small">
-            <h2 className="text-textPrimary text-xl font-bold">
-            Work Hours
-            </h2>
+          <Card className="bg-blue-50 mt-5" size="small">
+            
 
-            <div className="mt-10">
-              <ServicesProviderSchedule  />
+            <div className="">
+              <ServicesProviderSchedule businessHours={service?.servicesProvider?.businessHours} />
             </div>
           </Card>
 
