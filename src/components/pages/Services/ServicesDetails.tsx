@@ -190,7 +190,7 @@ const ServicesDetails = ({ id }: { id: string }) => {
             className=""
             size="small"
             dataSource={data}
-            renderItem={(item) => (
+            renderItem={(item:any) => (
               <List.Item>
                 <Typography.Text >
                   <FaScrewdriverWrench className="mx-2"  />

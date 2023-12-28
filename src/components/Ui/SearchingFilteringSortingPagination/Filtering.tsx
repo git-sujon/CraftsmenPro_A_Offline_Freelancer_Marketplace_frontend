@@ -21,10 +21,10 @@ const Filtering = () => {
     console.log("radio checked", e.target.value);
     setRatingValue(e.target.value);
   };
-  console.log(useGetUniqueFieldDataWithCountUrl);
+  console.log(envConfig?.useGetUniqueFieldDataWithCountUrl);
   const { fieldDataWithCount: courseCategories, isLoading } =
     useGetUniqueFieldDataWithCount(
-      envConfig.useGetUniqueFieldDataWithCountUrl,
+      envConfig?.useGetUniqueFieldDataWithCountUrl,
       "category"
     );
 

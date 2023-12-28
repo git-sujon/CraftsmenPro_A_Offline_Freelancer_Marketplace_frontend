@@ -6,5 +6,5 @@ export const getBaseUrl = ():string => {
 
 
 export const envConfig ={
-    useGetUniqueFieldDataWithCountUrl:process.env.GET_UNIQUE_FIELD_DATA_WITH_COUNT_URL
+    useGetUniqueFieldDataWithCountUrl:process.env.GET_UNIQUE_FIELD_DATA_WITH_COUNT_URL as string
 }

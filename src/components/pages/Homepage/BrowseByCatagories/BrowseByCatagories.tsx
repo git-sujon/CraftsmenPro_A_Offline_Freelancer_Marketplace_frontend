@@ -29,6 +29,7 @@ const BrowseByCatagories = () => {
       <div>
         <Row gutter={[16, 16]}>
           {categories.map((category) => (
+            //@ts-ignore
             <CategoryCard key={category.id} category={category} />
           ))}
         </Row>

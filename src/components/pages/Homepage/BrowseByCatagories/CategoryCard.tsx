@@ -1,11 +1,14 @@
 import { Card, Col } from "antd";
-import { ICategory } from "@/constants/browserByCatagories";
 
-interface CategoryCardProps {
-  category: ICategory;
+type CategoryCardProps ={
+  id:string |number
+  label:string
+  value:string
+  icon:any
+  description:string
 }
 
-const CategoryCard = ({ category }: CategoryCardProps) => {
+const CategoryCard = ({ category }: {category:CategoryCardProps}) => {
   return (
     <Col xs={24} sm={24} md={12} lg={6} xl={6}>
       <Card className="">
